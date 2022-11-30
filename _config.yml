@@ -1,1 +1,5 @@
-"# Build Settings" 
+# Build Settings 
+remote_theme: pages-themes/dinky@v0.2.0
+
+title: [EaSAL - Equitable and Secure Artificial Learning]
+description: [A knowledge and resource repository]
