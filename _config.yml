@@ -8,8 +8,8 @@ site-twitter:  #if your site has a twitter account, enter it here
 
 # Author Settings
 author: Alycia N. Carey # add your name
-author-img: 4677C153-4EC5-4AA5-B172-8F3584B5869D_1_101_o.jpeg # add your photo
-about-author: I am a third year Distinguished Doctoral Fellow in computer science at the University of Arkansas. My work focuses on fair and private federeated learning. # add description
+author-img:  # add your photo
+about-author: I am a third year computer science Distinguished Doctoral Fellow at the University of Arkansas. My work focuses on fair and private federeated learning. # add description
 social-twitter: alycia_noel_ # add your Twitter handle
 social-github: alycia-noel # add your Github handle
 social-linkedin: alyciacarey # add your Linkedin handle
