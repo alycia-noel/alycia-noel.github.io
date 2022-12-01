@@ -1,4 +1,4 @@
-title: Alycia N. Carey
+title: Fairness, Privacy, Artifical Intelligence
 description: > # this means to ignore newlines until "baseurl:"
   A blog by Alycia N. Carey
 permalink: ':title/'
@@ -7,7 +7,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 site-twitter:  #if your site has a twitter account, enter it here
 
 # Author Settings
-author: Fairness, Privacy, Artifical Intelligence # add your name
+author: Alycia N. Carey # add your name
 author-img: C567FDAB-9691-4E05-A2FB-2A6A8D7F748A_1_105_c.jpeg # add your photo
 about-author: A blog by Alycia N. Carey # add description
 social-twitter: alycia_noel_ # add your Twitter handle
