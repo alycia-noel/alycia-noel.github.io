@@ -941,6 +941,12 @@ table tfoot td {
   text-align: center;
 }
 
+.about ul li {
+  list-style-type: square;
+   margin: 0;
+   padding: 0;
+}
+
 .about .cover-author-image {
   width: 100px;
   height: 100px;
