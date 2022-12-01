@@ -941,11 +941,17 @@ table tfoot td {
   text-align: center;
 }
 
+.about ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
 .about ul li {
-  list-style-type: square;
-   margin: 0;
-   padding: 0;
-   text-align: left;
+  line-style-type: square;
+  display: inline-block;
+  margin-left: 10px;
 }
 
 .about .cover-author-image {
