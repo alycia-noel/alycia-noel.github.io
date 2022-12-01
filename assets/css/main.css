@@ -943,7 +943,9 @@ table tfoot td {
 
 .about ul li {
   list-style-type: square;
-   padding-left: 50px;
+   margin: 0;
+   padding: 0;
+   text-align: left;
 }
 
 .about .cover-author-image {
