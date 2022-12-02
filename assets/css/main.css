@@ -1286,6 +1286,9 @@ a.newer-posts:hover {
 .header-page {
   text-align: center;
   margin: 10px 0;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
 }
 
 .header-page .page-title {
