@@ -1,5 +1,5 @@
 ---
 layout: post
 title: Coming Soon!
-permalink: /reading-list/
+permalink: /resources/
 ---
