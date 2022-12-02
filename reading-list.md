@@ -1,7 +1,6 @@
 ---
 layout: main
-title: Reading List
+title: Coming Soon!
 permalink: /reading-list/
 ---
 
-## Reading List
