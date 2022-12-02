@@ -1,1 +1,3 @@
-# Hi I'm Alycia
+layout: page
+title: "About"
+permalink: /about
