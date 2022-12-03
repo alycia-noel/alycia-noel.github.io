@@ -25,7 +25,7 @@ img:  # Add image post (optional)
 Built on hundreds of studies in the United States, in the United Kingdom, and around the world, and written with energy, wit, and sparkling intelligence, this is a groundbreaking, highly readable exposé that will change the way you look at the world.
 * [Race After Technology: Ruha Benjamin](https://bookshop.org/p/books/race-after-technology-abolitionist-tools-for-the-new-jim-code-ruha-benjamin/7508567?ean=9781509526406)
 * [Repsonsible Artififical Intelligence: Virginia Dignum](https://bookshop.org/p/books/responsible-artificial-intelligence-how-to-develop-and-use-ai-in-a-responsible-way-virginia-dignum/15507515?ean=9783030303730)
-* [The Ethical Algorithm: Michael Kearns and Aaron Roth] (https://bookshop.org/p/books/the-ethical-algorithm-the-science-of-socially-aware-algorithm-design-michael-kearns/11705689?ean=9780190948207)
+* [The Ethical Algorithm: Michael Kearns and Aaron Roth](https://bookshop.org/p/books/the-ethical-algorithm-the-science-of-socially-aware-algorithm-design-michael-kearns/11705689?ean=9780190948207)
 * [Aritificial Intelligence: Melanie Mitchell](https://us.macmillan.com/books/9780374715236/artificialintelligence) 
 * [Weapons of Math Destruction: Cathy O'Neil](https://bookshop.org/p/books/weapons-of-math-destruction-how-big-data-increases-inequality-and-threatens-democracy-cathy-o-neil/11438502?ean=9780553418835)
 * [The Myth of Artificial Intelligence: Erik J. Larson](https://bookshop.org/p/books/the-myth-of-artificial-intelligence-why-computers-can-t-think-the-way-we-do-erik-j-larson/18467605?ean=9780674983519)
