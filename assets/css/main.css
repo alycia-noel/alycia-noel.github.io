@@ -1342,16 +1342,16 @@ a.newer-posts:hover {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
+  -webkit-justify-content: center;
       -ms-flex-pack: justify;
-          justify-content: space-between;
+          justify-content: center;
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
   padding-bottom: 30px;
   margin: 5px 0;
   border-bottom: 1px solid #a0a0a0;
-  align-content: flex-end;
+  align-content: center;
 }
 
 .page-footer .page-share {
