@@ -1352,6 +1352,7 @@ a.newer-posts:hover {
   margin: 5px 0;
   border-bottom: 1px solid #a0a0a0;
   align-content: center;
+  clear: both;
 }
 
 .page-footer .page-share {
