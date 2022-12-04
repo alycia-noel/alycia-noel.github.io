@@ -10,6 +10,9 @@ permalink: /resources/
 * [Zotero](https://www.zotero.com)
 * [Connected Papers](https://www.connectedpapers.com/)
 * [Paul Tol's Color Schemes for Accecssiblility](https://cran.r-project.org/web/packages/khroma/vignettes/tol.html)
+* [Writing for Computer Science](https://link.springer.com/book/10.1007/978-1-4471-6639-9)
+* [Managing your Mental Health during your PhD: A Survival Guide](https://link.springer.com/book/10.1007/978-3-031-14194-2)
+* [The Unwritten Rules of PHD Research](https://www.amazon.com/dp/0335262120/?coliid=I2J66VAR5CVJOP&colid=128KZJMSD9Q0I&psc=1&ref_=lv_ov_lig_dp_it)
 
 ## Videos
 
