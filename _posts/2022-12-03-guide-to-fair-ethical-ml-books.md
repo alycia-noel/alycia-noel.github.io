@@ -6,9 +6,11 @@ description: My favorite books on fair and ethical machine learning and artifici
 ---
 
 ## [Automating Inequality: Virigina Eubanks](https://bookshop.org/p/books/automating-inequality-how-high-tech-tools-profile-police-and-punish-the-poor-virginia-eubanks/8445864?ean=9781250215789)
+<div>
 <img
   src="/assets/img/book-covers/inequality.png"
   style="float: left; border: 4px solid black; max-width: 250px; margin: 0 15px 15px 0; margin-top: -25px">
+<\div>
   
 ## [Atlas of AI: Kate Crawford](https://bookshop.org/p/books/atlas-of-ai-power-politics-and-the-planetary-costs-of-artificial-intelligence-kate-crawford/17465404?ean=9780300264630)
 <img
