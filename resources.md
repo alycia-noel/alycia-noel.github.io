@@ -29,7 +29,6 @@ permalink: /resources/
 * [Programming Differential Privacy](https://programming-dp.com/cover.html)
 * [The Algorithmic Foundations of Differential Privacy](https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf)
 * [Fairness and Machine Learning](https://fairmlbook.org/)
-* https://www.aiethicist.org/
 * [FairLearn](https://github.com/fairlearn/fairlearn)
 * [STAT110: Introduction to Probability](https://projects.iq.harvard.edu/stat110/home)
 * [Ethical AI](https://www.aiethicist.org/)
