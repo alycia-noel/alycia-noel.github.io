@@ -2,7 +2,6 @@
 layout: post
 title: Resources
 permalink: /resources/
-date: My most used resources during my PhD.
 ---
 
 ## Academic/Research Tools
