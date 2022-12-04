@@ -4,14 +4,15 @@ title: "Guide to Fair and Ethical AI/ML Books"
 date: 2022-12-03 17:32:20 +0300
 description: My favorite books on fair and ethical machine learning and artificial intelligence.
 ---
+<details>
+<summary> ## [Automating Inequality: Virigina Eubanks](https://bookshop.org/p/books/automating-inequality-how-high-tech-tools-profile-police-and-punish-the-poor-virginia-eubanks/8445864?ean=9781250215789) </summary>
 
-## [Automating Inequality: Virigina Eubanks](https://bookshop.org/p/books/automating-inequality-how-high-tech-tools-profile-police-and-punish-the-poor-virginia-eubanks/8445864?ean=9781250215789)
-
-<p>
 <img
   src="/assets/img/book-covers/inequality.png"
-  style="float: left; border: 4px solid black; max-width: 250px; margin: 0 15px 15px 0"> lorem ipsum asdfghjkl
-</p>
+  style="float: left; border: 4px solid black; max-width: 250px; margin: 0 15px 15px 0"> 
+  lorem ipsum asdfghjkl
+
+</details>
   
 ## [Atlas of AI: Kate Crawford](https://bookshop.org/p/books/atlas-of-ai-power-politics-and-the-planetary-costs-of-artificial-intelligence-kate-crawford/17465404?ean=9780300264630)
 
