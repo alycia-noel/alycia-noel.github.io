@@ -8,10 +8,10 @@ description: My favorite books on fair and ethical machine learning and artifici
 
 <img
   src="/assets/img/book-covers/inequality.png"
-  style="float: left; border: 4px solid black; max-width: 250px; margin: 0 15px 15px 0"/> 
+  style="align: left; border: 4px solid black; max-width: 250px; margin: 0 15px 15px 0;"/> 
   lorem ipsum asdfghjkl
   
-  
+
 ## [Atlas of AI: Kate Crawford](https://bookshop.org/p/books/atlas-of-ai-power-politics-and-the-planetary-costs-of-artificial-intelligence-kate-crawford/17465404?ean=9780300264630)
 
 <img
