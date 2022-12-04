@@ -3,6 +3,7 @@ layout: post
 title: "Hi! I'm Alycia."
 permalink: /about/
 ---
+
 <img
   src="/assets/img/7BBCB897-3E8B-4C4E-A6DA-EF965BC0E7C0_1_201_a.jpeg"
   style="align: left; border-radius: 25%; border: 4px solid black; max-width: 250px; " />
