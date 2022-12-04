@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Resume
+title:Resume
 permalink: /resume/
 ---
 
