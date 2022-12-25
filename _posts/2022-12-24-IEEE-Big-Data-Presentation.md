@@ -10,7 +10,7 @@ In this post, I will present slides from my presentation at IEEE BigData held in
 
 Federated learning was proposed in 2016 by McMan et al. who desired to train a high-quality centralized model without requiring the aggregation of the distributed clients’ private data. In their work, McMan et al. proposed Federated Averaging, which remains one of the most popular federated learning architectures today. In federated averaging, one round of training is completed as follows. First, the server selects a group of clients to participate in the training round. 
 
-<p style="align:center; max-width: 150px;">
+<p style="align-items:center; max-width: 500px;">
   <img src="http://alycia-noel.github.io/assets/img/bigdata22/2.png" />
 </p>
 
