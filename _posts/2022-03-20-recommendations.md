@@ -5,4 +5,39 @@ date: 2022-03-20 17:00:00 +0300
 description: This post will explain several deficits in the fair machine learning work published so far with several propositions for solutions.
 tags: [fairness, machine learning]
 ---
-In this post, I will present...
+
+There have been several attempts to define fairness quantitatively (which are detailed in the posts on statistical and causal fairness). Some think that the rapid growth of this new field has led to widely inconsistent motivations, terminology, and notation, presenting a serious challenge for cataloging and comparing definitions [[1]](https://www.annualreviews.org/doi/abs/10.1146/annurev-statistics-042720-125902). Despite much headway in the last several years, our work in fair machine learning is far from over. In fact, there are several missteps that the field has taken that we need to remedy before truly being able to call our methods "fair". These issues include rigid categorization strategies, improper terminology, hurtful assumptions and abstractions, misalignment with legal ideals, and issues of diversity and power struggles.
+
+## Rigid "Box-Like" Categorization
+In most published fairness works, fairness is enforced on rigidly structured groups or categories. For instance, many papers consider the binary categories of _male or female_ and _White or Black_ as the main axis along which to determine if an algorithm is fair or not. These ontological assumptions, though helpful in simplifying the problem at hand, are often misplaced. 
+
+The problem with narrowing concepts like gender and race down to simple binary groups is that there is no precise definition of what a "group" or "category" is in the first place. Despite not having a common interpretation, it is widely accepted in the social sciences that groups and categories are social constructs, not rigid boxes into which a person can be placed. _Constructionist ontology_ is the understanding that socially salient categories such as gender and race are not embodied by sharing a physical trait or genealogical features, but are in fact constituted by a web of social relations and meanings [[2]](https://arxiv.org/abs/2006.01770). Social construction does not mean that these groups are not real, but that these categories of race and gender are brought into existence and shaped into what we know them to be by historical events, social forces, political power, and/or colonial conquest [[3]](https://www.hup.harvard.edu/catalog.php?isbn=9780674004122). When we treat these social constructs as rigidly defined attributes, rather than structural, institutional, and relational circumstances, it minimizes the structural aspects of algorithmic (un)fairness [[4]](https://arxiv.org/abs/1912.03593). The very concept of fairness itself can only be understood when framed in the viewpoint of the specific social group being considered. 
+
+Specific to racial categorization, Sebastian Benthall and critical race scholar Bruce D. Haynes discuss how "racial classification is embedded in state institutions, and reinforced in civil society in ways that are relevant to the design of machine learning systems" [[5]](https://arxiv.org/abs/1811.11668). Race is widely acknowledge in the social science field to be a social construction tied to a specific context and point of history, rather than to a certain phenotypical property. Hanna et al. explain that the meaning of a "race" at any given point in time is tied to a specific _racial project_ which is an explanation and interpretation of racial identities according to the efforts in organizing and distributing resources along particular racial lines [[4]](https://arxiv.org/abs/1912.03593). They express that it would be more accurate to describe race as having relational qualities, with dimensions that are symbolic or based on phenotype, but that are also contingent on specific social and historical contexts [[4]](https://arxiv.org/abs/1912.03593).
+
+The fair machine learning community needs to understand the multidimensional aspects of concepts such as race and gender and needs to seriously consider the impact that our conceptualization and operationalization of historically marginalized groups have on these groups today when defining what a "group" or "category" is in a specific fair machine learning setting. "To oversimplify is to do violence, or even more, to re-inscribe violence on communities that already experience structural violence" [[4]](https://arxiv.org/abs/1912.03593). The simplifications we make erase the social, economic, and political complexities of racial, gender, and sexuality categories. These counterfactual-based methodologies tend to treat groups as interchangeable, obscuring the unique oppression encountered by each group [[2]](https://arxiv.org/abs/2006.01770). Overall, we cannot do meaningful work in fair machine learning without first understanding and specifying the social ontology of the human groupings about which we are concerned will be the basis for unfairness [[2]](https://arxiv.org/abs/2006.01770).
+
+An avenue of fair machine learning research that would be a good start for solving this issue is the work on _intersectional_ fairness [[6](https://arxiv.org/abs/1807.08362),[7](https://arxiv.org/abs/1911.01468)]. Intersectionality describes the ways in which inequality based on marginalization attributes like gender, race, ethnicity, belonging to LGBTQIA+, and/or disability class "intersect" to create unique effects of discrimination. An example of intersectional fairness can be seen in the figure below. Discrimination does not operate inside of a vacuum and often times discrimination based on one marginalization attribute reinforces the discrimination based on another. For example, if we try to solve the pay gap between men and women and do not include other dimensions like race, socio-economic status, or immigration status, then it is very likely that our solution will actually reinforce inequalities among women [[8]](https://www.intersectionaljustice.org/what-is-intersectionality). While intersectional fairness would be a good start, as it allows for a finer grained classification of an individual, it does not fix the categorization issue itself as that will take the collaboration between the fair machine learning community and social scientists.
+
+<p style="margin:auto; width:60%; align:center;">
+  <img src="http://alycia-noel.github.io/assets/img/intersectionality.png" /></p>
+</p>
+<p style="margin:auto; width:60%; align:center;">
+  <img src="http://alycia-noel.github.io/assets/img/intersectionality-race.png" /></p>
+</p>
+<p style="margin:auto; width:60%; align:center;">
+  <img src="http://alycia-noel.github.io/assets/img/intersectionality-gender.png" /></p>
+</p>
+
+The above is a fictional example of acceptance rates to a university's computer science department based on gender, race, and ACT score. For gender: 0 = male and 1 = female. For ACT score: 0 = poor, 1 = okay, 2 = average, 3 = excellent. For race: 0 = White, 1 = Black, 2 = Other. In the top image, the red dots represent students that were not admitted and blue dots show the students that were admitted. In this fictional example, White men were accepted with worse ACT scores than other applicants like Black men or White females. Additionally, no Black women were accepted. If we only took into account gender or race, we would not be able to see this trend and our correction could reinforce inequalities among the specific marginalization class itself.}
+
+## Unintentionally Adverse Terminology
+
+## Damaging Assumptions and Abstractions
+### Assumptions
+### Abstractions
+
+## Misalignment of Current Fair ML Metrics with the Legal Field 
+
+## Power Dynamics and Diversity
+
