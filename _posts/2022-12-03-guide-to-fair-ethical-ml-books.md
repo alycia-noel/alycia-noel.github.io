@@ -3,6 +3,7 @@ layout: post
 title: "Guide to Fair and Ethical AI/ML Books"
 date: 2022-12-03 17:32:20 +0300
 description: My favorite books on fair and ethical machine learning and artificial intelligence.
+tags: [resources]
 ---
 ## [Automating Inequality: Virigina Eubanks](https://bookshop.org/p/books/automating-inequality-how-high-tech-tools-profile-police-and-punish-the-poor-virginia-eubanks/8445864?ean=9781250215789)
 
