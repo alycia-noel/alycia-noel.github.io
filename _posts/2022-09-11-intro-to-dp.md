@@ -18,7 +18,9 @@ Differential privacy was throughoughly explained by Dr. Cynthia Dwork and Dr. Aa
 ### :information_source: **Definition**
 A function which satisfies differential privacy is often called a _mechanism_. We say that a mechanism $F$ satisfies differential privacy if for all _neighboring_ datasets $x$ and $x'$, and all possible outputs $S$, 
 
-$$ \frac{\text{Pr}[F(x) = S]}{\text{Pr}[F(x')=S]} \leq e^\epsilon $$
+<p align="center">
+  $\frac{\text{Pr}[F(x) = S]}{\text{Pr}[F(x')=S]} \leq e^\epsilon$
+</p>
 
 Two datasets are considred neighbors if they are exactly the same, minus the record of a single individual. This single record could exist in one dataset, and not the other. Or, this record could exist in both dataset, but the data that makes up the record could be different. The important implication of this definition is that F's output will be the same (to a degree), with or without the data of any specific individual. The randomness build into F should be enough so that an observed output from F will not reveal which (x or x') was the input. 
 
@@ -30,7 +32,9 @@ The easiest way to achieve differential privacy (in most situations) is to add r
 #### :information_source: **Definition**
 According to the Laplace mechanism, for a function $f(x)$ which returns a number, the following definition of $F(x)$ satisfies $\epsilon$-differential privacy:
 
-$$F(x) = f(x) + Lap\big(\frac{s}{\epsilon}\big)$$
+<p align="center">
+    $F(x) = f(x) + Lap\big(\frac{s}{\epsilon}\big)$
+</p>
 
 where $s$ is the sensitivity of $f$, and $Lap\big(\frac{s}{\epsilon}\big)$ denotes sampling from the Laplace distribution with center 0 and scale $\frac{s}{\epsilon}$.
 
@@ -52,7 +56,9 @@ Some functions have pre-defined sensitivities:
 
 But, for most functions, the sensitivity has to be estimated and possibly clipped so as to not be unbounded as queries with unbounded sensitivity cannot be directly answered with differential privacy. To do so, we can use the following equation:
 
-$$\Delta f = \max||f(x) - f(y)||$$
+<p align="center">
+  $\Delta f = \max||f(x) - f(y)||$
+</p>
 
 which captures the magnitude by which a single indvidual's data can change the function $f$ _in the worst case_.
 
@@ -64,13 +70,17 @@ The Gaussian mechanism is an alternative to the Laplace mechanism and instead of
 
 Approximate differential privacy, also called $(\epsilon, \delta)$-differential privacy, has a similar definition to regular $\epsilon$-differential privacy.
 
-$$\frac{\text{Pr}[F(x) = S]}{\text{Pr}[F(x')=S]} \leq e^\epsilon + \delta$$
+<p align="center">
+  $\frac{\text{Pr}[F(x) = S]}{\text{Pr}[F(x')=S]} \leq e^\epsilon + \delta$
+</p>
 
 where $\delta$ is the failure probability. In other words, with probability $1 - \delta$ we will get the same guarantee as pure differential privacy, but with probability $\delta$ we get no guarantee. 
 
 According to the Gaussian mechanism, for a function $f(x)$ which returns a number, the following definition of $F(x)$ satisfies $(\epsilon, \delta)$-differential privacy:
 
-$$F(x) = f(x) + \mathcal{N}(\sigma^2)$$
+<p align="center">
+  $F(x) = f(x) + \mathcal{N}(\sigma^2)$
+</p>
 
 where $\sigma^2=\frac{2s^2\log{(1.25/\delta)}}{\epsilon^2}$, $s$ is the $L_2$ sensitivity (a.k.a, euclidean distance), and $\mathcal{N}(\sigma^2)$ denotes sampling from the Gaussian (normal) distribution with center 0 and variance $\sigma^2$. For real-valued functions, we can use the Gaussian mechanism in exactly the same way as we do the Laplace mechanism.
 
