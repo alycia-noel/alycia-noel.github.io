@@ -3,6 +3,7 @@ layout: post
 title: The Disparate Impact of Differential Privacy
 date: 2022-11-18 17:00:00 +0300
 description: In this post I will present a work that explains how differential privacy causes non-uniform accuracy degradation among different demographic groups as well as present one paper that offers a solution to this issue.
+use_math: false
 tags: [differential privacy, fairness, federated learning]
 ---
 
