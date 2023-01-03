@@ -22,11 +22,11 @@ discus-identifier: mr-brown # add your discus identifier
 analytics: # Google Analytics
 
 # Build Settings
-markdown: GFM
+markdown: gfm
 plugins:
   - jekyll-sitemap
   - jekyll-paginate
-  #- jemoji
+  - jemoji
 
 paginate: 8
 paginate_path: "/page/:num"
