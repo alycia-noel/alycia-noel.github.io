@@ -3,6 +3,7 @@ layout: post
 title: "Robust Personalized Federated Learning under Demographic Fairness Heterogeneity"
 date: 2022-12-24 17:00:00 +0300
 description: Published in IEEE BigData 2022
+use_math: true
 tags: [federated learning, fairness, personalization, my work]
 ---
 In this post, I will present slides from my presentation at IEEE BigData held in Osaka, Japan this year (2022) alongside my verbal explanation. My work discusses one specific technique to allow individual clients in a federated machine learning setting to be able to independently choose which fairness metric they want to enforce. A quick summary (and the abstract from my paper) is the following: 
