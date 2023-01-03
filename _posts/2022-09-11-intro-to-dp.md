@@ -31,9 +31,11 @@ The easiest way to achieve differential privacy (in most situations) is to add r
 ### The Laplace Mechanism (and Sensitivity)
 #### :information_source: **Definition**
 According to the Laplace mechanism, for a function $f(x)$ which returns a number, the following definition of $F(x)$ satisfies $\epsilon$-differential privacy:
+
 $$
 F(x) = f(x) + Lap\big(\frac{s}{\epsilon}\big)
 $$
+
 where $s$ is the sensitivity of $f$, and $Lap\big(\frac{s}{\epsilon}\big)$ denotes sampling from the Laplace distribution with center 0 and scale $\frac{s}{\epsilon}$.
 
 The $L_1$ _sensitivity_ of a function $f$ is the amount $f$'s output changes when its input changes by 1. For example,
@@ -53,7 +55,11 @@ Some functions have pre-defined sensitivities:
 | Summation (upper/lower bounds) | upper - lower | 
 
 But, for most functions, the sensitivity has to be estimated and possibly clipped so as to not be unbounded as queries with unbounded sensitivity cannot be directly answered with differential privacy. To do so, we can use the following equation:
-$$\Delta f = \max||f(x) - f(y)||$$
+
+$$
+\Delta f = \max||f(x) - f(y)||
+$$
+
 which captures the magnitude by which a single indvidual's data can change the function $f$ _in the worst case_.
 
 
@@ -63,15 +69,19 @@ The Gaussian mechanism is an alternative to the Laplace mechanism and instead of
 :information_source: **Definition**
 
 Approximate differential privacy, also called $(\epsilon, \delta)$-differential privacy, has a similar definition to regular $\epsilon$-differential privacy.
+
 $$
 \frac{\text{Pr}[F(x) = S]}{\text{Pr}[F(x')=S]} \leq e^\epsilon + \delta
 $$
+
 where $\delta$ is the failure probability. In other words, with probability $1 - \delta$ we will get the same guarantee as pure differential privacy, but with probability $\delta$ we get no guarantee. 
 
 According to the Gaussian mechanism, for a function $f(x)$ which returns a number, the following definition of $F(x)$ satisfies $(\epsilon, \delta)$-differential privacy:
+
 $$
 F(x) = f(x) + \mathcal{N}(\sigma^2)
 $$
+
 where $\sigma^2=\frac{2s^2\log{(1.25/\delta)}}{\epsilon^2}$, $s$ is the $L_2$ sensitivity (a.k.a, euclidean distance), and $\mathcal{N}(\sigma^2)$ denotes sampling from the Gaussian (normal) distribution with center 0 and variance $\sigma^2$. For real-valued functions, we can use the Gaussian mechanism in exactly the same way as we do the Laplace mechanism.
 
 ### The Exponential Mechanism
