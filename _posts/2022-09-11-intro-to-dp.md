@@ -18,7 +18,7 @@ Differential privacy was throughoughly explained by Dr. Cynthia Dwork and Dr. Aa
 ### :information_source: **Definition**
 A function which satisfies differential privacy is often called a _mechanism_. We say that a mechanism $F$ satisfies differential privacy if for all _neighboring_ datasets $x$ and $x'$, and all possible outputs $S$, 
 
-$$\frac{\text{Pr}[F(x) = S]}{\text{Pr}[F(x')=S]} \leq e^\epsilon$$
+$$ \frac{\text{Pr}[F(x) = S]}{\text{Pr}[F(x')=S]} \leq e^\epsilon $$
 
 Two datasets are considred neighbors if they are exactly the same, minus the record of a single individual. This single record could exist in one dataset, and not the other. Or, this record could exist in both dataset, but the data that makes up the record could be different. The important implication of this definition is that F's output will be the same (to a degree), with or without the data of any specific individual. The randomness build into F should be enough so that an observed output from F will not reveal which (x or x') was the input. 
 
