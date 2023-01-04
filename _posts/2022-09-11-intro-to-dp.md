@@ -86,3 +86,29 @@ where $\sigma^2=\frac{2s^2\log{(1.25/\delta)}}{\epsilon^2}$, $s$ is the $L_2$ se
 
 ### The Exponential Mechanism
 The Laplace and Guassian mechanisms are focused on numerical answers, and add noise directly to the answer itself. When we want to return a precise answer with no added noise while still preserving privacy we can use the exponential mechanism. The exponential mexhanism allows selecting the best element from a set while preserving differential privacy. The analyst defines which element is the best by specifying a scoring function that outputs a score for each element in the set, and also defines the set of things to pick from. The mexhanism provides differential privacy by approximately maximizing the score of the element it returns. In other words, to satisfy differential privacy, the exponential mexhanism sometimes returns and element from the set which does not have the highest score. For a more detailed discussion of the exponential mechanism, see [this post](https://programming-dp.com/ch9.html).
+
+## Properties of Differential Privacy
+There are three important properties of differentially private mechanisms that arise from the definition of differential privacy: sequential compopsition, parallel composition, and post processing. These properties help us to design useful algorithms that satisfy differential privacy and ensure that those algorithms provide accurate answers.
+
+### Sequential Composition
+Sequential composition bounds the total privacy cost of releasing multiple results of differentially private mechanisms on the same input data. Formally, the sequential composition theorem for differential privacy says that:
+
+> If $F_1(x)$ satisfies $\epsilon_1$-differential privacy and $F_2(x)$ satisfies $\epsilon_2$-differential privacy then the mechanism $G(x) = (F_1(x), F_2(x))$ which releases both results satisfies $\epsilon_1 + \epsilon_2$ differential privacy.
+
+Sequential composition is a vital property of differential privacy because it enables the design of algorithms that consult the data more than once. Sequential composition is also important when multiple separate analyses are performed on a single dataset, since it allows individuals to bound the total privacy cost they incur by participating in all of these analyses. The bound on privacy cost given by sequential composition is an upper bound - the actual privacy cost of two particular differentially private releases may be smaller than this, but never larger. 
+
+### Parallel Composition
+Parallel composition can be seen as an alternative to sequential composition. It is a second way to calculate a bound on the total privacy cost of multiple data releases. Parallel composition is based on the idea of splitting your dataset into disjoint chunks and running a differentially private mechanism on each chunk separately. Since the chunks are disjoint, each individual's data appears in exactly one chunk - so even if there are $k$ chunks in total (and therefore $k$ runs of the mechanism), the mexhanism runs exactly once on the data of each individual. Formally,
+
+> If $F(x)$ satisfies $\epsilon$-differential privacy and we split a dataset $X$ into $k$ disjoint chunks such that $x_1\cup\dots\cup x_k = X$, then the mechanism which releases all of the results $F(x_1), \dots, F(x_k)$ satisfies $\epsilon$-differential privacy. 
+
+Parallel composition gives a much better ound than sequential composition gives. Since we run $F$ $k$ times, sequential composition would say that this procedure satisfies $k\epsilon$-differential privacy. Parallel composition allows us to say that th etotal privacy cost is just $\epsilon$.
+
+### Post-Processing
+The main idea behind postprocessing is that it is impossible to reverse the privacy protection provided by differential privacy by post-processing the data in some way. Formally, 
+
+> If $F(X)$ satisfies $\epsilon$-differential privacy, then for any (deterministic or randomized) function $g$, $g(F(X))$ satisfies $\epsilon$-differential privacy.
+
+This means that it is always safe to perform arbitrary computations on the output of a differentially private mechanism as there is no danger of reversing the privacy protection the mechanism has provided. In particular, it's fine to perform post-processing that might reduce the noise of the mechanism's output (e.g., replacing negative results with zeros, for queries that shouldn't return negative results). In fact, many sophisticated differentially private algorithms make use of post-processing to reduce noise and improve the accuracy of their results. 
+
+The other implication of the post-processing property is that differential privacy provides resistance against privacy attacks based on auxiliary information. For example, the function $g$ might contain auxiliary information about elements of the dataset, and attempt to perform a linkage attack using this information. The post-processing property says that such an attack is limited in its effectiveness by the privacy parameter $\epsilon$, regardless of the auxiliary information contained in $g$.
