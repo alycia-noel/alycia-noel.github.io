@@ -196,7 +196,7 @@ The metric of balance for the negative class is opposite of the balance for the 
 $$\mathbb{E}[\mathcal{P} \mid  Y = 0 \cap S = 0] =\mathbb{E}[\mathcal{P} \mid  Y = 0 \cap S = 1]$$
 Same as the argument for balance for the positive class, the balance for the negative class metric is a derivative of equalized odds when $Y = 0$ and we approximate $\hat{y} \in \hat{Y}$ with probability score $\mathcal{P}$. Therefore, the balance for the negative class metric falls under all the same categorization as equalized odds (as well as balance for the positive class) does.
 
-<p style="display: block; margin: auto; width: 95%;">
+<p style="display: block; margin: auto; width: 90%;">
     <img src="/assets/img/stat-ml/tab2.png">
 </p>
 
