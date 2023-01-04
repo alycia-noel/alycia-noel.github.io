@@ -55,7 +55,6 @@ The final category, sufficiency, makes use of the idea that for the purpose of p
 The authors of  [[3]](fairmlbook.org) note that it is common to assume that $\hat{Y}$ satisfies sufficiency if the marginalization attribute $S$ and the target variable $Y$ are clearly understood from the problem context. Some examples of fair machine learning metrics that satisfy sufficiency include: predictive parity, conditional use accuracy, test fairness, and well calibration.
 
 # Statistics-Based Fair Machine Learning Metrics
-
 In this section I list several popular statistics-based fair machine learning metrics into categories based on several axes, including: what attributes of the machine learning system they use (e.g., the predicted outcomes, the predicted and actual outcomes, or the predicted probability and actual outcomes), which formal statistical criterion (independence, separation, or sufficiency) it aligns with as proposed in  [[3]](fairmlbook.org), which legal notion it can be tied to, as well as which philosophical ideal serves as its foundation (e.g., substantive (Rawls') EOP or luck-egalitarian EOP) by using the classification procedure explained in [[4](https://arxiv.org/abs/1809.03400),[5](https://www.sciencedirect.com/science/article/pii/S0047272709000905)]. Fig. 3 shows our classification of the metrics along the statistical lines of true positive, true negative, false positive, and false negative depending on what metrics the fairness method uses and Table 2 summarizes our main classification conclusions. Additionally, at the end of this section, we devote space to discussing individual fairness and the (apparent) differences between individual and group fair machine learning metrics. We additionally note that this section uses the following variables: $S=1$ is the marginalized or minority group, $S = 0$ is the non-marginalized or majority group, $\hat{Y}$ is the predicted value or class (i.e., label), and $Y$ is the true or actual label/class. 
 
 <p style="display: block; margin: auto; width: 75%;">
@@ -224,52 +223,84 @@ since if a classifier has equal positive predictive values for both groups, it w
 ### Equalized Odds
 
 The fair machine learning metric of equalized odds is also known as conditional procedure accuracy equality and disparate mistreatment. It requires that true and false positive rates are similar across different groups \cite{moritz_google_price_srebro}. 
-$$P[\hat{Y} = 1 \mid  Y = y \cap S = 0] = P[\hat{Y} = 1 \mid  Y = y \cap S = 1] \;\; \text{ for } \;\; y\in\{0,1\}$$
-Equalized odds aligns with Rawls' EOP and \cite{heidari_moral_2019} provides a proof for this classification which we recall in Appendix \ref{appendix pred and act} since it is similar to the proof for statistical parity as Rawls' EOP. Additionally, it aligns with separation and anti-subordination \cite{barocas-hardt-narayanan}.
+
+<p align="center">
+    $P[\hat{Y} = 1 \mid  Y = y \cap S = 0] = P[\hat{Y} = 1 \mid  Y = y \cap S = 1] \;\; \text{ for } \;\; y\in\{0,1\}$
+</p>
+
+Equalized odds aligns with Rawls' EOP and \cite{heidari_moral_2019} provides a proof for this classification. Additionally, it aligns with separation and anti-subordination \cite{barocas-hardt-narayanan}.
 
 ### False Positive Error Rate Balance
-
 False positive error rate balance, otherwise known as predictive equality, requires that false positive rates are similar across different groups \cite{chouldechova2016fair}. It can be seen mathematically as:
-$$P[\hat{Y}=\hat{y} \mid  Y = 0 \cap S = 0] = P[\hat{Y} = \hat{y} \mid  Y = 0 \cap S = 1] \;\; \text{ for } \;\; \hat{y}\in\{0,1\}$$
+
+<p align="center">
+    $P[\hat{Y}=\hat{y} \mid  Y = 0 \cap S = 0] = P[\hat{Y} = \hat{y} \mid  Y = 0 \cap S = 1] \;\; \text{ for } \;\; \hat{y}\in\{0,1\}$
+</p>
+
 We note that if a classifier has equal false positive rates for both groups, it will also have equal true negative rates, hence why $\hat{y} \in \{0,1\}$. This fairness metric can be seen as a relaxed version of equalized odds that only requires equal false positive rates, and therefore it aligns with all the categories that equalized odds does, specifically: Rawls' EOP, separation, and anti-subordination.
 
 ### False Negative Error Rate Balance
 False negative error rate balance, also called equal opportunity, is the direct opposite of the above fair machine learning metric of false positive error rate balance in that it requires false negative rates to be similar across different groups \cite{chouldechova2016fair}. This metric can be written as: 
-$$P[\hat{Y}=\hat{y} \mid  Y = 1 \cap S = 0] = P[\hat{Y} = \hat{y} \mid  Y = 1 \cap S = 1] \;\; \text{ for } \;\; \hat{y}\in\{0,1\}$$
+
+<p align="center">
+    $P[\hat{Y}=\hat{y} \mid  Y = 1 \cap S = 0] = P[\hat{Y} = \hat{y} \mid  Y = 1 \cap S = 1] \;\; \text{ for } \;\; \hat{y}\in\{0,1\}$
+</p>
+
 and we note that a classifier that has equal false negative rates across the two groups will also have equal true positive rates. This fair machine learning metric can also be seen as a relaxed version of equalized odds that only requires equal false negative error rates, and therefore, aligns with all the same categories. 
 
 ### Overall Accuracy Equality
 As the name implies, overall accuracy equality requires similar prediction accuracy across different groups. In this case, we are assuming that obtaining a true negative is as desirable as obtaining a true positive \cite{fairness_in_criminal_justice}. According to \cite{barocas-hardt-narayanan}, it matches with the statistical measure of independence, meaning that it also aligns with anti-classification and anti-subordination. Mathematically, it can be written as:
-$$P[\hat{Y}=y \mid  Y = y \cap S = 0] = P[\hat{Y} = y\mid  Y = y \cap S = 1] \;\; \text{ for } \;\; y, \hat{y} \in \{0,1\}$$
-Overall accuracy equality is the third fair machine learning metric that Heidari et al. prove belongs to the Rawls' EOP category of fair machine learning metrics \cite{heidari_moral_2019} and we recall their proof in Appendix \ref{appendix pred and act}.  
+
+<p align="center">
+    $P[\hat{Y}=y \mid  Y = y \cap S = 0] = P[\hat{Y} = y\mid  Y = y \cap S = 1] \;\; \text{ for } \;\; y, \hat{y} \in \{0,1\}$
+</p>
+
+Overall accuracy equality is the third fair machine learning metric that Heidari et al. prove belongs to the Rawls' EOP category of fair machine learning metrics \cite{heidari_moral_2019}.  
 
 ### Treatment Equality
 Treatment equality analyzes fairness by looking at how many errors were obtained rather than through the lens of accuracy. It requires an equal ratio of false negative and false positive values for all groups \cite{fairness_in_criminal_justice}. Further, it agrees exactly with the statistical measure of separation \cite{barocas-hardt-narayanan}, and the legal notion of anti-subordination. 
-$$\frac{FN_{S = 0}}{FP_{S = 0}} = \frac{FN_{S = 1}}{FP_{S = 1}}$$
+
+<p align="center">
+    $\frac{FN_{S = 0}}{FP_{S = 0}} = \frac{FN_{S = 1}}{FP_{S = 1}}$
+</p>
+
 Treatment equality can be considered as the ratio of false positive error rate balance and false negative error rate balance. Since both of these metrics fall into the Rawls' EOP category, treatment equality does as well. 
 
 ## Predicted Probabilities and Actual Outcomes
-
 The predicted probability and actual outcome category of fair machine learning metrics is similar to the above category of metrics that use the predicted and actual outcomes. But, instead of using the predictions themselves, this category uses the probability of being predicted to a certain class. This category of metrics includes: test fairness, well calibration, balance for the positive class, and balance for the negative class. The first two metrics fall in line with the statistical measure of sufficiency and legal notions of both anti-classification and anti-subordination, while the last two align with separation and anti-subordination.
 
 ### Test Fairness
 Test fairness, which falls under the luck-egalitarian EOP category (see proof in Appendix \ref{app: test fair}), is satisfied if, for any predicted probability score $p \in \mathcal{P}$, subjects in both the marginalized and non-marginalized groups have equal probability of actually belonging to the positive class. Test fairness has also been referenced by the terms calibration, equal calibration, and matching conditional frequencies \cite{chouldechova2016fair}. Mathematically, it can be written as follows:
 
-$$P[Y = 1 \mid  \mathcal{P} = p \cap S = 0] = P[Y = 1 \mid  \mathcal{P} = p \cap S = 1]$$
+<p align="center">
+    $P[Y = 1 \mid  \mathcal{P} = p \cap S = 0] = P[Y = 1 \mid  \mathcal{P} = p \cap S = 1]$
+</p>
 
 ### Well Calibration
 Well calibration is very similar to the metric of test fairness, but it additionally requires that for any predicted probability score $p \in \mathcal{P}$, not only should the majority and minority classes have equal probability of belonging to the positive class, but this probability should be $p$ \cite{kleinberg2016inherent}.
-$$P[Y=1\mid \mathcal{P}=p \cap S = 0] = P[Y=1\mid \mathcal{P}=p \cap S = 1] = p$$
+
+<p align="center">
+    $P[Y=1\mid \mathcal{P}=p \cap S = 0] = P[Y=1\mid \mathcal{P}=p \cap S = 1] = p$
+</p>
+
 Since well calibration is an extension of test fairness, it also falls under the classifications of luck-egalitarian EOP, sufficiency, anti-classification, and anti-subordination.
 
 ### Balance for the Positive Class
 As the name suggests, the balance for the positive class metric requires that individuals who experience a positive outcome, regardless of which group they belong to, should have an equal mean predicted probability of being in the positive class \cite{kleinberg2016inherent}. It can be seen as being similar to the metric of equal opportunity, which says that a classifier should give equivalent treatment to all groups. 
-$$\mathbb{E}[\mathcal{P} \mid  Y = 1 \cap S = 0] =\mathbb{E}[\mathcal{P} \mid  Y = 1 \cap S = 1]$$
+
+<p align="center">
+    $\mathbb{E}[\mathcal{P} \mid  Y = 1 \cap S = 0] =\mathbb{E}[\mathcal{P} \mid  Y = 1 \cap S = 1]$
+</p>
+
 Like false positive error rate balance, the balance for the positive class metric can be seen as a derivative of the equalized odds metric when $Y = 1$. Additionally, instead of taking into account the predicted label $\hat{y} \in \hat{Y}$, it concerns itself with the predicted probability $\mathcal{P}$. Since equalized odds falls into Rawls' EOP category of metrics, the balance for the positive class metric does as well. Similarly, balance for the positive class also aligns with separation and anti-subordination. 
 
 ### Balance for the Negative Class
 The metric of balance for the negative class is opposite of the balance for the positive class metric. Instead of requiring balance in the predictive mean of the positive class, it requires balance in the predicted mean of the negative class \cite{kleinberg2016inherent}. It is similar to the measure of false positive error rate balance. 
-$$\mathbb{E}[\mathcal{P} \mid  Y = 0 \cap S = 0] =\mathbb{E}[\mathcal{P} \mid  Y = 0 \cap S = 1]$$
+
+<p align="center">
+    $\mathbb{E}[\mathcal{P} \mid  Y = 0 \cap S = 0] =\mathbb{E}[\mathcal{P} \mid  Y = 0 \cap S = 1]$
+</p>
+
 Same as the argument for balance for the positive class, the balance for the negative class metric is a derivative of equalized odds when $Y = 0$ and we approximate $\hat{y} \in \hat{Y}$ with probability score $\mathcal{P}$. Therefore, the balance for the negative class metric falls under all the same categorization as equalized odds (as well as balance for the positive class) does.
 
 <p style="display: block; margin: auto; width: 90%;">
