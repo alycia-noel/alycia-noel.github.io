@@ -68,53 +68,6 @@ In this section we organize several popular statistics-based fair machine learni
     \caption{Classification of each fair machine learning metric along the statistical boundaries of true positive, false positive, true negative, and false negative as determined by which of the 4 measures is used in the fair machine learning metric. For instance, since equalized odds uses positive predictive rates (i.e., both TP and FP values), it is on the row where the predicted value is positive. Similarly, since test fairness says that all groups should have equal probability of belonging to the positive class, it is classified in the top left square related to the actual label of positive. Additionally, the diagonal lines means that the metric in the box at the end of the line uses the statistics that the line runs through. For example, treatment equality uses both false positive and false negative values. A list of all the acronyms can be found in Table \ref{tab:big-table}.}
     \label{fig:conf-matrix}
 \end{figure}
-\begin{table}[h!]
-\centering
-\label{tab:big-table}
-\caption{Definitions and classifications for popular fair machine learning classification metrics. IND = Independent, SUF = Sufficiency, SEP = Separation, R = Rawls', LE = Luck-Egalitarian, DI = Disparate Impact, DT = Disparate Treatment, AC = Anti-Classification, AS = Anti-Subordination. A $\checkmark$ means that the fairness metric is in that category.}
-\label{tab:big-table}
-\resizebox{\linewidth}{!}{%
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{lccccccc} 
-\toprule
-\multicolumn{1}{c}{\textbf{Metric}} & \textbf{Abbreviation} & \textbf{Definition} & \textbf{Closest} & \textbf{R / LE} & \textbf{DI/DT} & \textbf{AC} & \textbf{AS} \\ 
-\hline\hline
-\multicolumn{8}{l}{\textbf{1. Predicted Outcomes}} \\ 
-\hline
-Statistical Parity & SP & \begin{tabular}[c]{@{}c@{}}All groups have equal probability \\of being assigned to the \\positive class.\end{tabular} & IND & R & DI & $\checkmark$ & $\checkmark$ \\ 
-\hline
-– Treatment Parity & TPar & \begin{tabular}[c]{@{}c@{}}Proportion of positive predictions\\of all groups must be similar.\end{tabular} & IND & R & DI & $\checkmark$ & $\checkmark$ \\ 
-\hline
-Conditional Statistical Parity & CSP & \begin{tabular}[c]{@{}c@{}}Requires statistics for all groups \\to be equal, allowing for a set of \\legitimate factors $L = \ell$.~\end{tabular} & IND & R & DI & $\checkmark$ & $\checkmark$ \\ 
-\hline\hline
-\multicolumn{8}{l}{\textbf{2. Predicted and Actual Outcomes}} \\ 
-\hline
-Conditional Use Accuracy & CUA & \begin{tabular}[c]{@{}c@{}}Similar positive and negative\\predictive values across groups.\end{tabular} & SUF & LE & DI & $\checkmark$ & $\checkmark$ \\ 
-\hline
-Predictive Parity & PP & \begin{tabular}[c]{@{}c@{}}Similar positive~predictive values\\(or FDR) across groups.\end{tabular} & SUF & LE & DI & $\checkmark$ & $\checkmark$ \\ 
-\hline
-Equalized Odds & EO & \begin{tabular}[c]{@{}c@{}}Similar false positive and false\\negaitve rates across groups.\end{tabular} & SEP & R & DI &  & $\checkmark$ \\ 
-\hline
-False Positive Error Rate Balance & FPERB & \begin{tabular}[c]{@{}c@{}}Similar false positive rates\\(or TNR) across groups.\end{tabular} & SEP & R & DI &  & $\checkmark$ \\ 
-\hline
-False Negative Error Rate Balance & FNERB & \begin{tabular}[c]{@{}c@{}}Similar false negative rates\\(or TPR) across groups.\end{tabular} & SEP & R & DI &  & $\checkmark$ \\ 
-\hline
-Treatment Equality & TE & \begin{tabular}[c]{@{}c@{}}Equal ratio of false negatives and\\false positive between groups.\end{tabular} & SEP & R & DI &  & $\checkmark$ \\ 
-\hline
-Overall Accuracy Equality & OAE & \begin{tabular}[c]{@{}c@{}}Requires similar accuracy across\\groups.\end{tabular} & IND & R & DI & $\checkmark$ & $\checkmark$ \\ 
-\hline\hline
-\multicolumn{8}{l}{\textbf{3. Predicted Probabilities and Actual Outcomes}} \\ 
-\hline
-Test Fairness & TF & \begin{tabular}[c]{@{}c@{}}All groups have equal probability\\to belong to the positive class.\end{tabular} & SUF & LE & DI & $\checkmark$ & $\checkmark$ \\ 
-\hline
-Well Calibration & WC & \begin{tabular}[c]{@{}c@{}}The probability of all groups to\\belong to the positive class is \\the predicted probability score~$p\in\mathcal{P}$.\end{tabular} & SUF & LE & DI & $\checkmark$ & $\checkmark$ \\ 
-\hline
-Balance for Positive Class & BPC & \begin{tabular}[c]{@{}c@{}}Equal mean predicted probabilities\\for all people in the positive \\class, regardless of group.\end{tabular} & SEP & R & DI &  & $\checkmark$ \\ 
-\hline
-Balance for Negative Class & BNC & \begin{tabular}[c]{@{}c@{}}Equal mean predicted probabilities\\for all subjects in the negative \\class, regardless of group.\end{tabular} & SEP & R & DI &  & $\checkmark$ \\
-\bottomrule
-\end{tabular}
-}
 \end{table}
 
 To provide a background for the following proofs, we state a relaxed, binary, version of the definitions for Rawls' EOP and luck-egalitarian EOP for supervised learning proposed by Heidari et al \cite{heidari_moral_2019}:
