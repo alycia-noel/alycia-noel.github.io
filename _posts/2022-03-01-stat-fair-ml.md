@@ -6,7 +6,7 @@ description: In this post, I will explain how several popular fair machine learn
 use-math: true
 tags: [fairness, machine learning]
 ---
-
+jliksfdjiklsfjiklserfjikl
 Many of the proposed fair machine learning metrics have groundings in statistics \cite{chouldechova_frontiers_2018}. For example, statistical parity depends on the measurement of raw positive classification rates; equalized odds depends on false positive and false negative rates; and predictive parity depends on true positive rates. The use of statistical measures is attractive because they are relatively simple to measure and definitions built using statistical measures can usually be achieved without having to make any assumptions on the underlying data distributions. Many of the common statistical measures used in fair machine learning metrics are listed in Table \ref{tab:stat_def}. We note that these statistical measures are not unique to fair machine learning metrics, rather they are general measures from the field of statistics itself. 
 
 |                Measure                 | Abrriv. |           Formula        | Definition | 
