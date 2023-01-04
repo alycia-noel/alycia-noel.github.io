@@ -7,63 +7,76 @@ use-math: true
 tags: [fairness, machine learning]
 ---
 
-Many of the proposed fair machine learning metrics have groundings in statistics \cite{chouldechova_frontiers_2018}. For example, statistical parity depends on the measurement of raw positive classification rates; equalized odds depends on false positive and false negative rates; and predictive parity depends on true positive rates. The use of statistical measures is attractive because they are relatively simple to measure and definitions built using statistical measures can usually be achieved without having to make any assumptions on the underlying data distributions. Many of the common statistical measures used in fair machine learning metrics are listed in Table \ref{tab:stat_def}. We note that these statistical measures are not unique to fair machine learning metrics, rather they are general measures from the field of statistics itself. 
+Many of the proposed fair machine learning metrics have groundings in statistics [[1]](http://arxiv.org/abs/1810.08810). For example, statistical parity depends on the measurement of raw positive classification rates; equalized odds depends on false positive and false negative rates; and predictive parity depends on true positive rates. The use of statistical measures is attractive because they are relatively simple to measure and definitions built using statistical measures can usually be achieved without having to make any assumptions on the underlying data distributions. Many of the common statistical measures used in fair machine learning metrics are listed in Table 1. We note that these statistical measures are not unique to fair machine learning metrics, rather they are general measures from the field of statistics itself. 
 
 <p style="display: block; margin: auto; width: 75%;">
     <img src="/assets/img/stat-ml/tab1.png">
 </p>
-It is important to note that a grounding in statistics does not provide individual level fairness, or even sub-group fairness for a marginalized class \cite{corbettdavies2018measure}. Instead, it provides meaningful guarantees to the "average" member of a marginalized\footnote{What we call the marginalization attribute (or marginalized class) is often called the sensitive or protected attribute/class in fair machine learning literature. See Section \ref{terminology} for why we choose to use marginalized instead of protected or sensitive.} group. In order to fully implement fairness on the individual level, techniques such as causal and counterfactual inference are commonly used and we refer interested readers to \cite{barocas-hardt-narayanan,10.3389/fdata.2022.892837} for an introduction to this field. 
 
-Additionally, many statistical measures directly oppose one another. For instance, it is impossible to satisfy false positive rates, false negative rates, and positive predictive value across marginalized groups. This creates the direct consequence that many definitions of fair machine learning metrics cannot be satisfied in tandem. This fact was firmly cemented in the work completed by Barocas et al. \cite{barocas-hardt-narayanan}. In this work, they propose three representative fairness criteria -- independence, separation, and sufficiency -- that serve as a classification boundary for the statistics-based fair machine learning metrics that have been published. The authors capitalize on the fact that most proposed fairness criteria are simply properties of the joint distribution of a marginalization attribute $S$ (e.g., race or gender), a target variable $Y$, and the classification (or in some cases probability score) $\hat{Y}$, which allowed them to create three distinct categories by forming conditional independence statements between the three random variables.
+It is important to note that a grounding in statistics does not provide individual level fairness, or even sub-group fairness for a marginalized class [[2]](https://arxiv.org/abs/1808.00023). Instead, it provides meaningful guarantees to the "average" member of a marginalized group. In order to fully implement fairness on the individual level, techniques such as causal and counterfactual inference are commonly used and we refer interested readers to [[3]](fairmlbook.org) for an introduction to this field. 
+
+Additionally, many statistical measures directly oppose one another. For instance, it is impossible to satisfy false positive rates, false negative rates, and positive predictive value across marginalized groups. This creates the direct consequence that many definitions of fair machine learning metrics cannot be satisfied in tandem. This fact was firmly cemented in the work completed by Barocas et al. [[3]](fairmlbook.org). In this work, they propose three representative fairness criteria -- independence, separation, and sufficiency -- that serve as a classification boundary for the statistics-based fair machine learning metrics that have been published. The authors capitalize on the fact that most proposed fairness criteria are simply properties of the joint distribution of a marginalization attribute $S$ (e.g., race or gender), a target variable $Y$, and the classification (or in some cases probability score) $\hat{Y}$, which allowed them to create three distinct categories by forming conditional independence statements between the three random variables.
 
 ### Independence
 
-The first formal category, independence, only requires that the marginalization attribute, $S$ ($S = 0$ non-marginalized, $S = 1$ marginalized), is statistically independent of the classification outcome $\hat{Y}$, $\hat{Y} \perp S$. For the binary classification case, the authors of \cite{barocas-hardt-narayanan} produce two different formulations: 
+The first formal category, independence, only requires that the marginalization attribute, $S$ ($S = 0$ non-marginalized, $S = 1$ marginalized), is statistically independent of the classification outcome $\hat{Y}$, $\hat{Y} \perp S$. For the binary classification case, the authors of [[3]](fairmlbook.org) produce two different formulations: 
 
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{rl}
-        Exact: & $P[\Hat{Y} = 1 \mid  S = 0] = P[\Hat{Y} = 1 \mid  S = 1]$\\
-        & \\
-        Relaxed: & $\frac{P[\Hat{Y}=1 \mid  S = 0]}{P[\Hat{Y} = 1 \mid  S = 1]} \geq 1 - \epsilon$
-    \end{tabular}
-\end{table}
+<p align="center">
+    Exact: $P[\hat{Y} = 1 \mid  S = 0] = P[\hat{Y} = 1 \mid  S = 1]$
+</p>
+<p align="center">
+    Relaxed: $\frac{P[\hat{Y}=1 \mid  S = 0]}{P[\hat{Y} = 1 \mid  S = 1]} \geq 1 - \epsilon$
+</p>  
+    
+When considering the event $\hat{Y}=1$ to be the positive outcome, this condition requires the acceptance rates to be the same across all groups. The relaxed version notes that the ratio between the acceptance rates of different groups needs to be greater than a threshold that is determined by a predefined slack term $\epsilon$. In many cases $\epsilon = .2$ in order to align with the four-fifths rule in disparate impact law. We note that the relaxed formulation is essentially the exact formulation, but with emphasis placed on measuring the ratio between the two groups rather than measuring their difference. 
 
-When considering the event $\hat{Y}=1$ to be the positive outcome, this condition requires the acceptance rates to be the same across all groups. The relaxed version notes that the ratio between the acceptance rates of different groups needs to be greater than a threshold that is determined by a predefined slack term $\epsilon$. In many cases $\epsilon = .2$ in order to align with the four-fifths rule in disparate impact law (see Section \ref{DI}). We note that the relaxed formulation is essentially the exact formulation, but with emphasis placed on measuring the ratio between the two groups rather than measuring their difference. 
-
-Barocas et al. also note that while independence aligns well with how humans reason about fairness, several draw-backs exist for fair machine learning metrics that fall into this category (e.g., statistical parity, treatment parity, conditional statistical parity, and overall accuracy equality) \cite{barocas-hardt-narayanan}. Specifically, the metrics of this category ignore any correlation between the marginalization attributes and the target variable $Y$ which constrains the construction of a perfect prediction model. Additionally, independence enables laziness. In other words, it allows situations where qualified people are carefully selected for one group (e.g., non-marginalized), while random people are selected for the other (marginalized). Further, the independence category allows the trade of false negatives for false positives, meaning that neither of these rates are considered more important, which is false in many circumstances \cite{barocas-hardt-narayanan}.
+Barocas et al. also note that while independence aligns well with how humans reason about fairness, several draw-backs exist for fair machine learning metrics that fall into this category (e.g., statistical parity, treatment parity, conditional statistical parity, and overall accuracy equality) [[3]](fairmlbook.org). Specifically, the metrics of this category ignore any correlation between the marginalization attributes and the target variable $Y$ which constrains the construction of a perfect prediction model. Additionally, independence enables laziness. In other words, it allows situations where qualified people are carefully selected for one group (e.g., non-marginalized), while random people are selected for the other (marginalized). Further, the independence category allows the trade of false negatives for false positives, meaning that neither of these rates are considered more important, which is false in many circumstances [[3]](fairmlbook.org).
 
 ### Separation
-The second category Barocas et al. propose is separation which captures the idea that in many scenarios the marginalization characteristic may be correlated with the target variable \cite{barocas-hardt-narayanan}. Specifically, the random variables satisfy separation if $\hat{Y} \perp S \mid  Y$ ($\hat{Y}$ is conditionally independent of $S$ when given $Y$). In the binary classification case, it is equivalent to requiring that all groups achieve the same true and false positive rates.
+The second category Barocas et al. propose is separation which captures the idea that in many scenarios the marginalization characteristic may be correlated with the target variable [[3]](fairmlbook.org). Specifically, the random variables satisfy separation if $\hat{Y} \perp S \mid  Y$ ( $\hat{Y}$ is conditionally independent of $S$ when given $Y$ ). In the binary classification case, it is equivalent to requiring that all groups achieve the same true and false positive rates.
 
-$$TP\;:\;P[\hat{Y}=1 \mid  Y = 1 \cap S = 0] = P[\hat{Y}=1 \mid  Y = 1 \cap S = 1]$$
-$$FP\;:\;P[\hat{Y}=1 \mid  Y = 0 \cap S = 0] = P[\hat{Y}=1 \mid  Y = 0 \cap S = 1]$$
+<p align="center">
+   $TP\;:\;P[\hat{Y}=1 \mid  Y = 1 \cap S = 0] = P[\hat{Y}=1 \mid  Y = 1 \cap S = 1]$
+</p>
+<p align="center">
+    $FP\;:\;P[\hat{Y}=1 \mid  Y = 0 \cap S = 0] = P[\hat{Y}=1 \mid  Y = 0 \cap S = 1]$
+</p>
 
 Additionally, this requirement can be relaxed to only require the same true positive rates or the same false positive rates. Fair machine learning metrics that fall under separation include: false positive error rate balance, false negative error rate balance, equalized odds, treatment equality, balance for the positive class, and balance for the negative class. 
 
 ### Sufficiency
 
-The final category, sufficiency, makes use of the idea that for the purpose of predicting $Y$, the value of $S$ doesn't need to be used if given $\hat{Y}$ since $S$ is subsumed by the classification $\hat{Y}$ \cite{barocas-hardt-narayanan}. For example, in the case college admissions, if the person's GPA or SAT score is sufficient for their race, then the admission committee does not need to actively look at race when making the decision. More concretely, the random variables satisfy sufficiency if $Y \perp S \mid  \hat{Y}$ ($Y$ is conditionally independent of $S$ given $\hat{Y}$). In the binary classification case, this is the same as requiring a parity of positive or negative predictive values across all groups $\hat{y} \in \hat{Y}= \{0, 1\}$: 
+The final category, sufficiency, makes use of the idea that for the purpose of predicting $Y$, the value of $S$ doesn't need to be used if given $\hat{Y}$ since $S$ is subsumed by the classification $\hat{Y}$  [[3]](fairmlbook.org). For example, in the case college admissions, if the person's GPA or SAT score is sufficient for their race, then the admission committee does not need to actively look at race when making the decision. More concretely, the random variables satisfy sufficiency if $Y \perp S \mid  \hat{Y}$ ( $Y$ is conditionally independent of $S$ given $\hat{Y}$ ). In the binary classification case, this is the same as requiring a parity of positive or negative predictive values across all groups $\hat{y} \in \hat{Y}= \{0, 1\}$ : 
 
-$$P[Y = 1 \mid  \hat{Y} = \hat{y} \cap S = 0] = P[Y = 1 \mid  \hat{Y} = \hat{y} \cap S = 1]$$
+<p align="center">
+    $P[Y = 1 \mid  \hat{Y} = \hat{y} \cap S = 0] = P[Y = 1 \mid  \hat{Y} = \hat{y} \cap S = 1]$
+</p>
 
-The authors of \cite{barocas-hardt-narayanan} note that it is common to assume that $\hat{Y}$ satisfies sufficiency if the marginalization attribute $S$ and the target variable $Y$ are clearly understood from the problem context. Some examples of fair machine learning metrics that satisfy sufficiency include: predictive parity, conditional use accuracy, test fairness, and well calibration.
+The authors of  [[3]](fairmlbook.org) note that it is common to assume that $\hat{Y}$ satisfies sufficiency if the marginalization attribute $S$ and the target variable $Y$ are clearly understood from the problem context. Some examples of fair machine learning metrics that satisfy sufficiency include: predictive parity, conditional use accuracy, test fairness, and well calibration.
 
 # Statistics-Based Fair Machine Learning Metrics
 
-In this section we organize several popular statistics-based fair machine learning metrics into categories based on several axes, including: what attributes of the machine learning system they use (e.g., the predicted outcomes, the predicted and actual outcomes, or the predicted probability and actual outcomes), which formal statistical criterion (independence, separation, or sufficiency) it aligns with as proposed in \cite{barocas-hardt-narayanan}, which legal notion it can be tied to, as well as which philosophical ideal serves as its foundation (e.g., substantive (Rawls') EOP or luck-egalitarian EOP) by using the classification procedure explained in \cite{heidari_moral_2019, lefranc_equality_2009}. Fig. \ref{fig:conf-matrix} shows our classification of the metrics along the statistical lines of true positive, true negative, false positive, and false negative depending on what metrics the fairness method uses and Table \ref{tab:big-table} summarizes our main classification conclusions. Additionally, at the end of this section, we devote space to discussing individual fairness and the (apparent) differences between individual and group fair machine learning metrics. We additionally note that this section uses the following variables: $S=1$ is the marginalized or minority group, $S = 0$ is the non-marginalized or majority group, $\hat{Y}$ is the predicted value or class (i.e., label), and $Y$ is the true or actual label/class. 
+In this section I list several popular statistics-based fair machine learning metrics into categories based on several axes, including: what attributes of the machine learning system they use (e.g., the predicted outcomes, the predicted and actual outcomes, or the predicted probability and actual outcomes), which formal statistical criterion (independence, separation, or sufficiency) it aligns with as proposed in  [[3]](fairmlbook.org), which legal notion it can be tied to, as well as which philosophical ideal serves as its foundation (e.g., substantive (Rawls') EOP or luck-egalitarian EOP) by using the classification procedure explained in [[4](https://arxiv.org/abs/1809.03400),[5](https://www.sciencedirect.com/science/article/pii/S0047272709000905)]. Fig. 3 shows our classification of the metrics along the statistical lines of true positive, true negative, false positive, and false negative depending on what metrics the fairness method uses and Table 2 summarizes our main classification conclusions. Additionally, at the end of this section, we devote space to discussing individual fairness and the (apparent) differences between individual and group fair machine learning metrics. We additionally note that this section uses the following variables: $S=1$ is the marginalized or minority group, $S = 0$ is the non-marginalized or majority group, $\hat{Y}$ is the predicted value or class (i.e., label), and $Y$ is the true or actual label/class. 
+
 <p style="display: block; margin: auto; width: 75%;">
     <img src="/assets/img/stat-ml/fig3.png">
 </p>
 
-To provide a background for the following proofs, we state a relaxed, binary, version of the definitions for Rawls' EOP and luck-egalitarian EOP for supervised learning proposed by Heidari et al \cite{heidari_moral_2019}:
+To provide a background for the following proofs, we state a relaxed, binary, version of the definitions for Rawls' EOP and luck-egalitarian EOP for supervised learning proposed by Heidari et al [4](https://arxiv.org/abs/1809.03400):
 
-\begin{definition}[Rawls' and Luck-Egalitarian EOP for Supervised Learning]
- Predictive model $h$ satisfies Rawlsian/Luck-Egalitarian EOP if for all $s\in S=\{0,1\}$ and all $y, \hat{y} \in Y, \hat{Y} = \{0,1\} $:
- $$\text{Rawls': } F^h(U \leq u\mid S = 0 \cap Y = y) = F^h(U \leq u \mid  S = 1 \cap Y = y)$$
-  $$\text{LE: } F^h(U \leq u\mid S = 0 \cap \hat{Y} = \hat{y}) = F^h(U \leq u \mid  S = 1 \cap \hat{Y} = \hat{y})$$
- where $F^h(U \leq u)$ specifies the distribution of utility $U$ (i.e., the distribution of winning a social competition like being admitted to a university) across individuals under the predictive model $h$. I.e., it is the difference between the individual's actual effort $A$ and their circumstance $D$, $U = A - D$. In this relaxed case, utility is the difference between the individual's predicted and actual class.
-\end{definition}
+#### :information_source: **Definition: Rawls' and Luck-Egalitarian EOP for Supervised Learning]**
+Predictive model $h$ satisfies Rawlsian/Luck-Egalitarian EOP if for all $s\in S=\{0,1\}$ and all $y, \hat{y} \in Y, \hat{Y} = \{0,1\} $:
+
+<p align="center">
+    $\text{Rawls': } F^h(U \leq u\mid S = 0 \cap Y = y) = F^h(U \leq u \mid  S = 1 \cap Y = y)$
+</p>
+
+<p align="center">
+    $\text{LE: } F^h(U \leq u\mid S = 0 \cap \hat{Y} = \hat{y}) = F^h(U \leq u \mid  S = 1 \cap \hat{Y} = \hat{y})$
+</p>
+
+where $F^h(U \leq u)$ specifies the distribution of utility $U$ (i.e., the distribution of winning a social competition like being admitted to a university) across individuals under the predictive model $h$. I.e., it is the difference between the individual's actual effort $A$ and their circumstance $D$, $U = A - D$. In this relaxed case, utility is the difference between the individual's predicted and actual class.
+
 
 ## Predicted Outcomes
 The predicted outcomes family of fair machine learning metrics are the simplest, and most intuitive, notions of fairness. More explicitly, the predicted outcome class of metrics focuses on using the predicted outcome of various different demographic distributions of the data, and models only satisfy this definition if both the marginalized and non-marginalized groups have equal probability of being assigned to the positive predictive class \cite{verma_fairness_2018}. Many different metrics fall into the predicted outcome category, such as statistical parity and conditional statistical parity. Additionally, each metric in this group satisfies Rawls' definition of EOP as well as satisfies the statistical constraint of independence and the legal notions of anti-classification and anti-subordination. We also note that in the process of certifying and removing bias using fair machine learning metrics from this category, it is common to use the actual labels in place of the predicted labels (see Definition 1.1 of \cite{feldman_certifying_2015}). But, for simplicity, we present the fair machine learning metrics of this section using the predicted outcome only.
