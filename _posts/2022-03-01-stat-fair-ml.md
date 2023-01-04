@@ -84,50 +84,90 @@ The predicted outcomes family of fair machine learning metrics are the simplest,
 ### Statistical Parity
 
 Statistical parity is also often called demographic parity, statistical fairness, equal acceptance rate, or benchmarking. As the name implies, it requires that there is an equal probability for both individuals in the marginalized and non-marginalized groups to be assigned to the positive class \cite{dwork_fairness_2011, kusner_loftus_russell_silva}. Notationally, statistical parity can be written as: 
-$$P[\hat{Y} = 1 \mid  S = 0] = P [\hat{Y} = 1 \mid  S  = 1]$$
 
-In \cite{heidari_moral_2019}, Heidari et al. map statistics-based fair machine learning metrics to equality of opportunity (EOP) models from political philosophy. As discussed in Section \ref{philo}, in EOP an individual's outcome is affected by their circumstance $c$ (all 'irrelevant' factors like race, gender, status, etc. that a person should not be held accountable for) and effort $e$ (those items which a person can morally be held accountable for). For any $c$ and $e$, a policy $\phi$ can be used to create a distribution of utility $U$ (e.g., the acceptance to a school, getting hired for a position, etc.) among the people with circumstance $c$ and effort $e$. 
+<p align="center">
+    $P[\hat{Y} = 1 \mid  S = 0] = P [\hat{Y} = 1 \mid  S  = 1]$
+</p>
 
-To map the notions of circumstance and effort to the proposed statistics-based fair machine learning notions, they treat the predictive model $h$ as policy $\phi$ and assume that a person's features can be divided into those that are 'irrelevant' and those that they can be held accountable for (a.k.a, are effort-based). Additionally, they let the person's irrelevant features be seen as their individual circumstance ($\mathbf{z}$ for $c$), their effort-based utility as their effort ($d$ for $e$), and their utility be the difference between their actual-effort $a$ and effort-based utility $d$. The difference between $a$ and $d$ is much like the difference between $y$ and $\hat{y}$ in machine learning literature. In other words, $d$ is the utility a person \textit{should} receive based on their accountable factors (i.e., the salary a person should receive based on their experience/education/etc.) while $a$ is the utility a person \textit{actually} receives  (i.e., the actual salary they are paid). Here, we recall the proof for statistical parity as Rawls' EOP as presented in \cite{heidari_moral_2019}:
+In \cite{heidari_moral_2019}, Heidari et al. map statistics-based fair machine learning metrics to equality of opportunity (EOP) models from political philosophy. In EOP an individual's outcome is affected by their circumstance $c$ (all 'irrelevant' factors like race, gender, status, etc. that a person should not be held accountable for) and effort $e$ (those items which a person can morally be held accountable for). For any $c$ and $e$, a policy $\phi$ can be used to create a distribution of utility $U$ (e.g., the acceptance to a school, getting hired for a position, etc.) among the people with circumstance $c$ and effort $e$. 
 
-\begin{proposition}[Statistical Parity as Rawls' EOP \cite{heidari_moral_2019}]
-\label{rawl's eop group fair}
+To map the notions of circumstance and effort to the proposed statistics-based fair machine learning notions, they treat the predictive model $h$ as policy $\phi$ and assume that a person's features can be divided into those that are 'irrelevant' and those that they can be held accountable for (a.k.a, are effort-based). Additionally, they let the person's irrelevant features be seen as their individual circumstance ( $\mathbf{z}$ for $c$ ), their effort-based utility as their effort ($d$ for $e$), and their utility be the difference between their actual-effort $a$ and effort-based utility $d$. The difference between $a$ and $d$ is much like the difference between $y$ and $\hat{y}$ in machine learning literature. In other words, $d$ is the utility a person _should_ receive based on their accountable factors (i.e., the salary a person should receive based on their experience/education/etc.) while $a$ is the utility a person _actually_ receives  (i.e., the actual salary they are paid). Here, we recall the proof for statistical parity as Rawls' EOP as presented in \cite{heidari_moral_2019}:
+
+
+#### :information_source: Proposition: Statistical Parity as Rawls' EOP \cite{heidari_moral_2019}
 Consider the binary classification task where $Y, \hat{Y}=\{0,1\}$. Suppose $U = A - D$, $A = \hat{Y}$, and $D = Y = 1$ (i.e., the effort-based utility of all individuals is assumed to be the same). Then, the conditions of Rawls' EOP is equivalent to statistical parity when $\hat{Y} = 1$.
-\end{proposition}
-\vspace{-20pt}
-\begin{proof}
-Recall that Rawls' EOP requires that $s\in S = \{0,1\} $, $y \in Y= \{0,1\}$, $u = a - d\in\{-1, 0\}$:
-$$P[U\leq u \mid  S = 0 \cap Y = y] = P [U \leq u \mid  S = 1 \cap Y = y]$$
-Replacing $U$ with $(A - D)$, $D$ with 1, and $A$ with $\hat{Y}$, the above is equivalent to:
-$$P[A - D \leq u \mid  S = 0 \cap Y = 1] = P[A - D \leq u \mid  S = 1 \cap Y = 1]$$
-$$P[\hat{Y} - 1 \leq u \mid  S = 0 \cap Y = 1] = P[\hat{Y} - 1 \leq u \mid  S = 1 \cap Y = 1]$$
-$$P[\hat{Y} \leq u + 1\mid  S = 0] = P[\hat{Y} \leq u + 1 \mid  S = 1]$$
-$$P[\hat{Y} = \hat{y}\mid  S = 0] = P[\hat{Y} = \hat{y} \mid  S = 1]$$
+
+**Proof: ** Recall that Rawls' EOP requires that $s\in S = \{0,1\}$ , $y \in Y= \{0,1\}$ , $u = a - d\in\{-1, 0\}$ :
+
+<p align="center">
+    $P[U\leq u \mid  S = 0 \cap Y = y] = P [U \leq u \mid  S = 1 \cap Y = y]$
+</p>
+
+Replacing $U$ with $(A - D)$, $D$ with 1, and $A$ with $\hat{Y}$ , the above is equivalent to:
+
+<p align="center">
+    $P[A - D \leq u \mid  S = 0 \cap Y = 1] = P[A - D \leq u \mid  S = 1 \cap Y = 1]$
+</p>
+
+<p align="center">
+    $P[\hat{Y} - 1 \leq u \mid  S = 0 \cap Y = 1] = P[\hat{Y} - 1 \leq u \mid  S = 1 \cap Y = 1]$
+</p>
+
+<p align="center">
+    $P[\hat{Y} \leq u + 1\mid  S = 0] = P[\hat{Y} \leq u + 1 \mid  S = 1]$
+</p>
+
+<p align="center">
+    $P[\hat{Y} = \hat{y}\mid  S = 0] = P[\hat{Y} = \hat{y} \mid  S = 1]$
+</p>
+
 because of the facts that $u = \hat{y} - y$ and $y = 1$ produce the result $\hat{y} = u + 1$. This is equal to the definition for statistical parity when $\hat{Y} = 1$, therefore, the conditions of Rawls' EOP is equivalent to statistical parity.
-\end{proof}
 
 #### Treatment Parity
-Instead of measuring the difference between the assignment rates, treatment parity\footnote{What we call treatment parity is often referred to as disparate impact. To better distinguish from the legal term of disparate impact, we choose to follow this naming convention proposed by \cite{mayson_2018}.} looks at the ratio between the assignment rate. It is not a derivative of statistical parity as much as it is a different way of looking at it. The distinction between the forms of statistical parity and treatment parity was made to better connect with the legal term of disparate impact - as the treatment parity form was explicitly designed to be the mathematical counterpart to the legal notion \cite{feldman_certifying_2015, barocas_big_2016}. Mathematically, it is defined as: 
-$$\frac{P[\hat{Y} = 1 \mid  S = 0]}{P[\hat{Y} = 1 \mid  S = 1]} \geq 1 - \epsilon$$
-where $\epsilon$ is the allowed slack of the metric and is usually set to $0.2$ to achieve the $80\%$ rule of disparate impact law. This equation says that the proportion of positive predictions for both the marginalized and non-marginalized groups must be similar (around threshold $1 - \epsilon$). Since it is essentially the same as statistical parity, it also aligns with Rawls' EOP, independence, anti-classification, and anti-subordination.
+Instead of measuring the difference between the assignment rates, treatment parity looks at the ratio between the assignment rate. It is not a derivative of statistical parity as much as it is a different way of looking at it. The distinction between the forms of statistical parity and treatment parity was made to better connect with the legal term of disparate impact - as the treatment parity form was explicitly designed to be the mathematical counterpart to the legal notion \cite{feldman_certifying_2015, barocas_big_2016}. Mathematically, it is defined as: 
+
+<p align="center">
+    $\frac{P[\hat{Y} = 1 \mid  S = 0]}{P[\hat{Y} = 1 \mid  S = 1]} \geq 1 - \epsilon$
+</p>
+
+where $\epsilon$ is the allowed slack of the metric and is usually set to $0.2$ to achieve the $80\%$ rule of disparate impact law. This equation says that the proportion of positive predictions for both the marginalized and non-marginalized groups must be similar (around threshold $1 - \epsilon$ ). Since it is essentially the same as statistical parity, it also aligns with Rawls' EOP, independence, anti-classification, and anti-subordination.
 
 ### Conditional Statistical Parity
 Conditional statistical parity is an extension of statistical parity which allows a certain set of legitimate attributes to be factored into the outcome \cite{corbett-davies2017algorithmic}. Factors are considered "legitimate" if they can be justified by ethics, by the law, or by a combination of both. This notion of fairness was first defined by Kamiran et al. in 2013 who wanted to quantify explainable and illegal discrimination in automated decision making where one or more attributes could contribute to the explanation \cite{kamiran2013quantifying}. Conditional statistical parity is satisfied if both marginalized and non-marginalized groups have an equal probability of being assigned to the positive predicted class when there is a set of legitimate factors that are being controlled for. Notationally, it can be written as: 
-$$P[\hat{Y} = 1 \mid  L_1 = a \cap L_2 = b \cap S = 0] = P[\hat{Y} = 1 \mid  L_1 = a \cap L_2 = b \cap S = 1]$$
-where $L_1, L_2$ are legitimate features that are being conditioned on. For example, if the task was to predict if a certain person makes over \$50,000 a year\footnote{This is the proposed task of a famous toy dataset in fair machine learning called the Adult Income dataset \cite{Dua:2019}.}, then $L_1$ could represent work status and $L_2$ could be the individuals relationship status. Another, simplified way to write this can be seen as: 
-$$P[\hat{Y} = 1 \mid  L = \ell \cap S = 1] = P[\hat{Y} = 1 \mid  L = \ell \cap S = 0]$$
+
+<p align="center">
+    $P[\hat{Y} = 1 \mid  L_1 = a \cap L_2 = b \cap S = 0] = P[\hat{Y} = 1 \mid  L_1 = a \cap L_2 = b \cap S = 1]$
+<p>
+    
+where $L_1, L_2$ are legitimate features that are being conditioned on. For example, if the task was to predict if a certain person makes over \$50,000 a year, then $L_1$ could represent work status and $L_2$ could be the individuals relationship status. Another, simplified way to write this can be seen as: 
+    
+<p align="center">
+    $P[\hat{Y} = 1 \mid  L = \ell \cap S = 1] = P[\hat{Y} = 1 \mid  L = \ell \cap S = 0]$
+</p>
+
 where $\ell\in L$ is the set of legitimate features being conditioned on. 
 
 <p style="display: block; margin: auto; width: 75%;">
     <img src="/assets/img/stat-ml/fig4.png">
 </p>
 
-Furthermore, conditional statistical parity helps to overcome Simpson's paradox as it incorporates extra conditioning information beyond the original class label. Simpson's paradox says that if a correlation occurs in several different groups, it may disappear, or even reverse, when the groups are aggregated \cite{blitzstein2019}. This event can be seen in Fig. \ref{fig:simpsons}.
+Furthermore, conditional statistical parity helps to overcome Simpson's paradox as it incorporates extra conditioning information beyond the original class label. Simpson's paradox says that if a correlation occurs in several different groups, it may disappear, or even reverse, when the groups are aggregated \cite{blitzstein2019}. This event can be seen in Fig. 4.
+
 Put mathematically, Simpson's paradox can be written as:
-$$P[A  \mid  B \cap C] < P [A \mid  B^c \cap C] \text{ and } P[A  \mid  B \cap C^c] < P [A \mid  B^c \cap C^c]$$
-$$\text{but}$$
-$$P[A\mid B] > P[A\mid B^c]$$
-where $X^c$ denotes the complement of the variable. An analysis that does not consider all of the relevant statistics might suggest that unfairness and discrimination is at play, when in reality, the situation may be morally and legally acceptable if all of the information was known. As with the above two metrics, conditional statistical parity aligns with Rawls' EOP, independence, anti-classification, and anti-subordination. Proofs for both treatment parity and conditional statistical parity belonging to Rawls' EOP can be found in Appendix \ref{secA11}.
+
+<p align="center">
+    $P[A  \mid  B \cap C] < P [A \mid  B^c \cap C] \text{ and } P[A  \mid  B \cap C^c] < P [A \mid  B^c \cap C^c]$
+</p>
+
+<p align="center">
+    but
+</p>
+
+<p align="center">
+    $P[A\mid B] > P[A\mid B^c]$
+</p>
+
+where $X^c$ denotes the complement of the variable. An analysis that does not consider all of the relevant statistics might suggest that unfairness and discrimination is at play, when in reality, the situation may be morally and legally acceptable if all of the information was known. As with the above two metrics, conditional statistical parity aligns with Rawls' EOP, independence, anti-classification, and anti-subordination.
 
 ## Predicted and Actual Outcomes
 
@@ -135,28 +175,51 @@ The predicted and actual outcome class of metrics uses both the model's predicti
 
 ### Conditional Use Accuracy
 Conditional use accuracy, also termed as predictive value parity, requires that positive and negative predicted values are similar across different groups \cite{fairness_in_criminal_justice}. Statistically, it aligns exactly with the requirement for sufficiency and therefore also aligns with anti-classification and anti-subordination \cite{barocas-hardt-narayanan}. Mathematically, it can be written as follows:
-$$P[Y = y \mid  \hat{Y} = y \cap S = 0] = P[Y = y \mid  \hat{Y} = y \cap S = 1] \;\; \text{ for } \;\; y\in\{0,1\}$$
+
+<p align="center">
+    $P[Y = y \mid  \hat{Y} = y \cap S = 0] = P[Y = y \mid  \hat{Y} = y \cap S = 1] \;\; \text{ for } \;\; y\in\{0,1\}$
+</p>
+
 In \cite{heidari_moral_2019}, they provide a proof that conditional use accuracy falls into the luck-egalitarian EOP criterion and we recall their work below:
-\begin{proposition}[Conditional Use Accuracy as Luck-Egalitarian EOP \cite{heidari_moral_2019}]
-Consider the binary classification task where $y \in Y = \{0,1\} $. Suppose that $U = A - D$, $A = Y$, and $D = \hat{Y}$(i.e., the effort-based utility of an individual under model a $h$is assumed to be the same as their predicted label). Then the conditions of luck-egalitarian EOP are equivalent to those of conditional use accuracy (otherwise known as predictive value parity). 
-\begin{proof}
-Recall that luck-egalitarian EOP requires that for $s\in S = \{0,1\}$, $\hat{y}\in\hat{Y}=\{0,1\}$, and $u \in \{-1, 1\}$:
-$$P[U \leq u \mid  \hat{Y}=\hat{y} \cap S = 0 ] = P[U \leq u \mid  \hat{Y}=\hat{y} \cap S = 1 ]$$
+
+#### :information_source: Proposition: Conditional Use Accuracy as Luck-Egalitarian EOP \cite{heidari_moral_2019}
+Consider the binary classification task where $y \in Y = \{0,1\}$ . Suppose that $U = A - D$, $A = Y$, and $D = \hat{Y}$ (i.e., the effort-based utility of an individual under model a $h$is assumed to be the same as their predicted label). Then the conditions of luck-egalitarian EOP are equivalent to those of conditional use accuracy (otherwise known as predictive value parity). 
+
+**Proof:** Recall that luck-egalitarian EOP requires that for $s\in S = \{0,1\}$, $\hat{y}\in\hat{Y}=\{0,1\}$, and $u \in \{-1, 1\}$:
+
+<p align="center">
+    $P[U \leq u \mid  \hat{Y}=\hat{y} \cap S = 0 ] = P[U \leq u \mid  \hat{Y}=\hat{y} \cap S = 1 ]$
+</p>
 
 Replacing $U$ with $A - D$, $D$ with $\hat{Y}$, and $A$ with $Y$, we obtain the following:
-$$P[A - D \leq u \mid  \hat{Y} = \hat{y} \cap S = 0 ] = P[A - D \leq u \mid  \hat{Y}=\hat{y} \cap S = 1 ]$$
-$$P[Y - \hat{Y} \leq u \mid  \hat{Y} = \hat{y} \cap S = 0 ] = P[Y - \hat{Y} \leq u \mid  \hat{Y}=\hat{y} \cap S = 1 ]$$
-$$P[Y \leq u + \hat{y}\mid  \hat{Y} = \hat{y} \cap S = 0 ] = P[Y \leq u + \hat{y}\mid  \hat{Y}=\hat{y} \cap S = 1 ]$$
-$$P[Y = y \mid  \hat{Y} = \hat{y} \cap S = 0 ] = P[Y = y \mid  \hat{Y}=\hat{y} \cap S = 1 ]$$
-since $u = a - d = y - \hat{y}$ produces the result that $y = u + \hat{y}$. The last line is then equal to the statement for conditional use accuracy when $y = \hat{y} = \{0,1\}$.
-\end{proof}
-\end{proposition}
+
+<p align="center">
+    $P[A - D \leq u \mid  \hat{Y} = \hat{y} \cap S = 0 ] = P[A - D \leq u \mid  \hat{Y}=\hat{y} \cap S = 1 ]$
+</p>
+
+<p align="center">
+    $P[Y - \hat{Y} \leq u \mid  \hat{Y} = \hat{y} \cap S = 0 ] = P[Y - \hat{Y} \leq u \mid  \hat{Y}=\hat{y} \cap S = 1 ]$
+</p>
+
+<p align="center">
+    $P[Y \leq u + \hat{y}\mid  \hat{Y} = \hat{y} \cap S = 0 ] = P[Y \leq u + \hat{y}\mid  \hat{Y}=\hat{y} \cap S = 1 ]$
+</p>
+
+<p align="center">
+    $P[Y = y \mid  \hat{Y} = \hat{y} \cap S = 0 ] = P[Y = y \mid  \hat{Y}=\hat{y} \cap S = 1 ]$
+</p>
+
+since $u = a - d = y - \hat{y}$ produces the result that $y = u + \hat{y}$. The last line is then equal to the statement for conditional use accuracy when $y = \hat{y} = \{0,1\}$ .
 
 ### Predictive Parity
 
 Predictive parity, otherwise known by the name outcome test, is a fair machine learning metric that requires the positive predictive values to be similar across both marginalized and non-marginalized groups \cite{chouldechova2016fair}. Mathematically, it can be seen as:
-$$P[Y=y \mid  \hat{Y} = 1\cap S = 0] = P[Y=y\mid \hat{Y} = 1 \cap S = 1] \;\; \text{ for } \;\; y\in\{0,1\}$$
-since if a classifier has equal positive predictive values for both groups, it will also have equal false discovery rates. Since predictive parity is simply conditional use accuracy when $\hat{Y} = 1$, it falls into the same philosophical category as conditional use accuracy, which is luck-egalitarian EOP. Further, \cite{barocas-hardt-narayanan} states that predictive parity aligns with sufficiency. Since it aligns with sufficiency, it also aligns with anti-classification and anti-subordination as discussed in Section \ref{legal}.
+
+<p align="center">
+    $P[Y=y \mid  \hat{Y} = 1\cap S = 0] = P[Y=y\mid \hat{Y} = 1 \cap S = 1] \;\; \text{ for } \;\; y\in\{0,1\}$
+</p>
+
+since if a classifier has equal positive predictive values for both groups, it will also have equal false discovery rates. Since predictive parity is simply conditional use accuracy when $\hat{Y} = 1$, it falls into the same philosophical category as conditional use accuracy, which is luck-egalitarian EOP. Further, \cite{barocas-hardt-narayanan} states that predictive parity aligns with sufficiency. Since it aligns with sufficiency, it also aligns with anti-classification and anti-subordination.
 
 ### Equalized Odds
 
