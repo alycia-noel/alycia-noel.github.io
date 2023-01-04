@@ -105,14 +105,9 @@ where $L_1, L_2$ are legitimate features that are being conditioned on. For exam
 $$P[\hat{Y} = 1 \mid  L = \ell \cap S = 1] = P[\hat{Y} = 1 \mid  L = \ell \cap S = 0]$$
 where $\ell\in L$ is the set of legitimate features being conditioned on. 
 
-\begin{figure}[t!]
-    \centering
-    \includegraphics[width=.49\textwidth]{simpsonsparadox2.png}
-    \hfill
-    \includegraphics[width=.49\textwidth]{simpsonsparadox.png}
-    \caption{Two different examples of Simpson's paradox. In the image on the left, while both the blue and purple groups are negatively correlated among themselves, when taken as a whole, there is a positive correlation. The opposite can be seen in the second image where the groups are positively correlated when taken alone, but when aggregated, a negative correlation is produced.}
-    \label{fig:simpsons}
-\end{figure}
+<p style="display: block; margin: auto; width: 75%;">
+    <img src="/assets/img/stat-ml/fig4.png">
+</p>
 
 Furthermore, conditional statistical parity helps to overcome Simpson's paradox as it incorporates extra conditioning information beyond the original class label. Simpson's paradox says that if a correlation occurs in several different groups, it may disappear, or even reverse, when the groups are aggregated \cite{blitzstein2019}. This event can be seen in Fig. \ref{fig:simpsons}.
 Put mathematically, Simpson's paradox can be written as:
@@ -200,6 +195,10 @@ Like false positive error rate balance, the balance for the positive class metri
 The metric of balance for the negative class is opposite of the balance for the positive class metric. Instead of requiring balance in the predictive mean of the positive class, it requires balance in the predicted mean of the negative class \cite{kleinberg2016inherent}. It is similar to the measure of false positive error rate balance. 
 $$\mathbb{E}[\mathcal{P} \mid  Y = 0 \cap S = 0] =\mathbb{E}[\mathcal{P} \mid  Y = 0 \cap S = 1]$$
 Same as the argument for balance for the positive class, the balance for the negative class metric is a derivative of equalized odds when $Y = 0$ and we approximate $\hat{y} \in \hat{Y}$ with probability score $\mathcal{P}$. Therefore, the balance for the negative class metric falls under all the same categorization as equalized odds (as well as balance for the positive class) does.
+
+<p style="display: block; margin: auto; width: 75%;">
+    <img src="/assets/img/stat-ml/tab2.png">
+</p>
 
 ## Discussion
 ### Impossibility Results of Statistics-Based Metrics
