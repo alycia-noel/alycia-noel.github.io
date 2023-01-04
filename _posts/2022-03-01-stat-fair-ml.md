@@ -174,6 +174,7 @@ Put mathematically, Simpson's paradox can be written as:
 
 where $X^c$ denotes the complement of the variable. An analysis that does not consider all of the relevant statistics might suggest that unfairness and discrimination is at play, when in reality, the situation may be morally and legally acceptable if all of the information was known. As with the above two metrics, conditional statistical parity aligns with Rawls' EOP, independence, anti-classification, and anti-subordination.
 
+
 ## Predicted and Actual Outcomes
 
 The predicted and actual outcome class of metrics uses both the model's predictions as well as the true labels of the data. This class of fair machine learning metrics includes: predictive parity, false positive error rate balance, false negative error rate balance, equalized odds, conditional use accuracy, overall accuracy equality, and treatment equality.
