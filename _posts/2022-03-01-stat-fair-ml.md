@@ -142,7 +142,7 @@ Conditional statistical parity is an extension of statistical parity which allow
 
 <p align="center">
     $P[\hat{Y} = 1 \mid  L_1 = a \cap L_2 = b \cap S = 0] = P[\hat{Y} = 1 \mid  L_1 = a \cap L_2 = b \cap S = 1]$
-<p>
+</p>
     
 where $L_1, L_2$ are legitimate features that are being conditioned on. For example, if the task was to predict if a certain person makes over \$50,000 a year, then $L_1$ could represent work status and $L_2$ could be the individuals relationship status. Another, simplified way to write this can be seen as: 
     
