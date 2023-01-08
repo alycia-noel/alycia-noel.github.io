@@ -43,7 +43,7 @@ where $s_1, s_0 \in \{ s^+, s^-\}$.
 
 For instance, based on the figure above, TCE would report the average causal effect that being Female had on a student's outcome of admission. 
 
-Additionally, the causal effect of $S$ on $Y$ does not only include the direct discriminatory effect, but it also includes the indirect discriminatory effect and the explainable effect. In [[3]](https://arxiv.org/abs/1301.2300), Pearl proposed the use of NDE and NIE to measure the direct and indirect discrimination. Recall that $\mathrm{NDE}(s_1, s_0) = P(y_{s_1, \mathbf{Z}_{s_0}}) - P(y_{s_0})$ and $\mathrm{NIE}(s_1, s_0) = P(y_{s_0, \mathbf{Z}_{s_1}}) - P(y_{s_0})$ where $\mathbf{Z}$ is the set of mediator variables. When applied to the example above, the mediator variable could be the major. 
+Additionally, the causal effect of $S$ on $Y$ does not only include the direct discriminatory effect, but it also includes the indirect discriminatory effect and the explainable effect. In [[3]](https://arxiv.org/abs/1301.2300), Pearl proposed the use of NDE and NIE to measure the direct and indirect discrimination. Recall that $NDE(s_1, s_0) = P(y_{s_1, \mathbf{Z}_{s_0}}) - P(y_{s_0})$ and $NIE(s_1, s_0) = P(y_{s_0, \mathbf{Z}_{s_1}}) - P(y_{s_0})$ where $\mathbf{Z}$ is the set of mediator variables. When applied to the example above, the mediator variable could be the major. 
 
 $P(y_{s_1, \mathbf{Z}_{s_0}})$ in NDE is the probability of $Y=y$ had $S$ been $s_1$ and had $\mathbf{Z}$ been the value it would naturally take if $S=s_0$ . In other words, based on the example, $P(y_{s_1, \mathbf{Z}_{s_0}})$ would be the probability of being admitted when changing the gender to be Male while keeping the major the same. Similarly, NIE measures the indirect effect of $S$ on $Y$. However, NIE does not distinguish between explainable and indirect discrimination. 
 
@@ -54,10 +54,10 @@ In [[4]](https://arxiv.org/abs/1611.07509), Zhang et al. introduced path-specifi
 Given the marginalization attribute $S$, decision $Y$, and _redlining attributes_ $\mathbf{R}$  (i.e., a set of attributes in $\mathbf{X}$ that cannot be legally justified if used in decision-making), define $\pi_{d}$ as the path set that contains some paths from $S$ to $Y$. We achieve path-specific causal fairness if: 
 
 <p align="center">
-	$\mathrm{PE}_{\pi}(s_1,s_0) = P(y_{s_1 \vert \pi, s_0 \vert \overline{\pi}}) - P(s_{x_0}) =0$
+	$PE_{\pi}(s_1,s_0) = P(y_{s_1 \vert \pi, s_0 \vert \overline{\pi}}) - P(s_{x_0}) =0$
 </p>
 
-where $s_1, s_0 \in \{ s^+, s^-\}$. Specifically, define $\pi_{d}$ as the path set that contains only $S\rightarrow Y$ and define $\pi_{i}$ as the path set that contains all the causal paths from $S$ to $Y$ which pass through some redlining attributes of $\mathbf{R}$. We achieve direct causal fairness if $\mathrm{PE}_{\pi_{d}}(s_1,s_0)=0$, and indirect causal fairness if $\mathrm{PE}_{\pi_{i}}(s_1,s_0)=0$.
+where $s_1, s_0 \in \{ s^+, s^-\}$. Specifically, define $\pi_{d}$ as the path set that contains only $S\rightarrow Y$ and define $\pi_{i}$ as the path set that contains all the causal paths from $S$ to $Y$ which pass through some redlining attributes of $\mathbf{R}$. We achieve direct causal fairness if $PE_{\pi_{d}}(s_1,s_0)=0$, and indirect causal fairness if $PE_{\pi_{i}}(s_1,s_0)=0$.
 
 Direct discrimination considers the causal effect transmitted along the direct path from $S$ to $Y$, i.e., $S\rightarrow Y$. The physical meaning of $PE_{\pi_{d}}(s_1,s_0)$ can be explained as the expected change in decisions of individuals from marginalized group $s_0$, if the decision makers are told that these individuals were from the non-marginalized group $s_1$. When applied to the running example, it means that the expected change in admission of applicants is actually from the marginalized group (e.g., Female), when the admission office is instructed to treat the applicants as from the non-marginalized group (e.g., Male). 
 
@@ -69,7 +69,7 @@ The following propositions [[4]](https://arxiv.org/abs/1611.07509) further show 
 If path set $\pi$ contains all causal paths from $S$ to $Y$ and $S$ has no parent in $\mathcal{G}$, then we have:
 
 <p align="center">
-	$\mathrm{PE}_{\pi}(s_1,s_0) = \mathrm{TCE}(s_1,s_0) = P(y^{+}\mid s_1)-P(y^{+}\mid s_0)$
+	$PE_{\pi}(s_1,s_0) = TCE(s_1,s_0) = P(y^{+}\mid s_1)-P(y^{+}\mid s_0)$
 </p>
 
 $P(y^{+}\mid s_1)-P(y^{+}\mid s_0)$ is known as the _risk difference_ (a measure of statistical parity). Therefore, the path-specific effect metrics can be considered as an extension to the risk difference (and statistical parity) for explicitly distinguishing the discriminatory effects of direct and indirect discrimination from the total causal effect.
@@ -78,7 +78,7 @@ $P(y^{+}\mid s_1)-P(y^{+}\mid s_0)$ is known as the _risk difference_ (a measure
 For any path sets $\pi_{d}$ and $\pi_{i}$, we do not necessarily have: 
 
 <p align="center">
-	$\mathrm{PE}_{\pi_{d}}(s_1,s_0)+\mathrm{PE}_{\pi_{i}}(s_1,s_0)=\mathrm{PE}_{\pi_{d}\cup \pi_{i}}(s_1,s_0)$
+	$PE_{\pi_{d}}(s_1,s_0)+PE_{\pi_{i}}(s_1,s_0)=PE_{\pi_{d}\cup \pi_{i}}(s_1,s_0)$
 </p>
 
 This implies that there might not be a linear connection between direct and indirect discrimination.
@@ -139,7 +139,7 @@ Building on these measures, Zhang and Bareinboim derived the causal explanation 
 The total variation (TV) of $S=s_1$ on $Y=y$ (with baseline $s_0$) is given by:
 
 <p align="center">
-	$\mathrm{TV}_{s_0, s_1}(y) = P(y\mid s_1) - P(y\mid s_0)$
+	$TV_{s_0, s_1}(y) = P(y\mid s_1) - P(y\mid s_0)$
 </p>
 
 In regard to the figure above, the TV would be the probability of the outcome given that the student was Male minus the probability of the outcome given that the student was Female., i.e., the difference in their overall probabilites of being admitted.
@@ -148,11 +148,11 @@ In regard to the figure above, the TV would be the probability of the outcome gi
 For any $s_0$, $s_1$, $y$, the total variation, counterfactual spurious, direct, and indirect effects obey the following relationship: 
  
 <p align="center">
- 	$\mathrm{TV}_{s_0,s_1}(y) = \textrm{Ctf-SE}_{s_0,s_1}(y) + \textrm{Ctf-IE}_{s_0,s_1}(y\mid s_1) - \textrm{Ctf-DE}_{s_1,s_0}(y\mid s_1)$
+ 	$TV_{s_0,s_1}(y) = \textrm{Ctf-SE}_{s_0,s_1}(y) + \textrm{Ctf-IE}_{s_0,s_1}(y\mid s_1) - \textrm{Ctf-DE}_{s_1,s_0}(y\mid s_1)$
 </p>
 
 <p align="center">
-	$\mathrm{TV}_{s_0,s_1}(y) = \textrm{Ctf-DE}_{s_0,s_1}(y\mid s_0) - \textrm{Ctf-SE}_{s_1,s_0}(y) - \textrm{Ctf-IE}_{s_1,s_0}(y\mid s_0)$
+	$TV_{s_0,s_1}(y) = \textrm{Ctf-DE}_{s_0,s_1}(y\mid s_0) - \textrm{Ctf-SE}_{s_1,s_0}(y) - \textrm{Ctf-IE}_{s_1,s_0}(y\mid s_0)$
 </p>
 
 The theorem allows the machine learning designer to quantitatively evaluate fairness and explain the total observed disparity of a decision through different discriminatory mechanisms. For example, the first formula shows that the total disparity experienced by the individuals who have naturally attained $s_1$ (relative to $s_0$, in other words, students who were naturally Male over Female) is equal to the disparity associated with spurious discrimination, plus the advantage it lost due to indirect discrimination, minus the advantage it would have gained without direct discrimination. 
@@ -211,26 +211,26 @@ Different from previous causality-based fairness notions, which require the pres
 Zhang and Bareinboim [[2]](https://proceedings.neurips.cc/paper/2018/hash/ff1418e8cc993fe8abcfe3ce2003e5c5-Abstract.html) developed a causal framework to link the disparities realized through equalized odds (EO) and the causal mechanisms by which the marginalization attribute $S$ affects change in the prediction $\hat{Y}$. EO, also referred to as error rate balance, considers both the ground truth outcome $Y$ and predicted outcome $\hat{Y}$. EO achieves fairness through the balance of the misclassification rates (false positive and negative) across different demographic groups. They introduced a family of counterfactual measures that allows one to explain the misclassification disparities in terms of the direct, indirect, and spurious paths from $S$ to $\hat{Y}$ on a structural causal model. Different from all previously discussed causality-based fairness notions, counterfactual error rate considers both $Y$ and $\hat{Y}$ in their counterfactual quantity. 
 
 #### :information_source: **Definition: Counterfactual Direct Error Rate**
-Given a SCM and a classifier $\hat{y}=f(\widehat{pa{}})$ where $\widehat{Pa{}}$ is a set of input features of the predictor, the counterfactual direct error rate ($\mathrm{ER}^d$) for a sub-population $s,y$ (with prediction $\hat{y} \ne y)$ is defined as: 
+Given a SCM and a classifier $\hat{y}=f(\widehat{pa{}})$ where $\widehat{Pa{}}$ is a set of input features of the predictor, the counterfactual direct error rate ($ER^d$) for a sub-population $s,y$ (with prediction $\hat{y} \ne y)$ is defined as: 
 
 <p align="center">
-	$\mathrm{ER}^d_{s_0,s_1}(\hat{y}\mid s,y) = P(\hat{y}_{s_1,y,(\widehat{Pa{}}\backslash S)_{s_0,y}}\mid s,y) - P(\hat{y}_{s_0,y}\mid s,y)$
+	$ER^d_{s_0,s_1}(\hat{y}\mid s,y) = P(\hat{y}_{s_1,y,(\widehat{Pa{}}\backslash S)_{s_0,y}}\mid s,y) - P(\hat{y}_{s_0,y}\mid s,y)$
 </p>
 
 For an individual with the marginalization attribute $S=s$ and the true outcome $Y=y$, the counterfactual direct error rate calculates the difference of two terms. The first term is the prediction $\hat{Y}$ had $S$ been $s_1$, while keeping all the other features $\widehat{Pa{}}\backslash S$ at the level that they would attain had $S=s_0$ and $Y=y$, whereas the second term is the prediction $\hat{Y}$ the individual would receive had $S$ been $s_0$ and $Y$ been $y$. 
 
 #### :information_source: **Definition: Counterfactual Indirect Error Rate**
-Given a SCM and a classifier $\hat{y}=f(\widehat{pa{}})$, the counterfactual indirect error rate ($\mathrm{ER}^i$) for a sub-population $s,y$ (with prediction $\hat{y} \ne y)$ is defined as: 
+Given a SCM and a classifier $\hat{y}=f(\widehat{pa{}})$, the counterfactual indirect error rate ($ER^i$) for a sub-population $s,y$ (with prediction $\hat{y} \ne y)$ is defined as: 
 
 <p align="center">
-	$\mathrm{ER}^i_{s_0,s_1}(\hat{y}\mid s,y) = P(\hat{y}_{s_0,y,(\hat{PA}\backslash S)_{s_1,y}}\mid s,y) - P(\hat{y}_{s_0,y}\mid s,y)$
+	$ER^i_{s_0,s_1}(\hat{y}\mid s,y) = P(\hat{y}_{s_0,y,(\hat{PA}\backslash S)_{s_1,y}}\mid s,y) - P(\hat{y}_{s_0,y}\mid s,y)$
 </p>
 
 #### :information_source: **Definition: Counterfactual Spurious Error Rate**
-Given a SCM and a classifier $\hat{y}=f(\widehat{pa{}})$, the counterfactual spurious error rate ($\mathrm{ER}^s$) for a sub-population $s,y$ (with prediction $\hat{y} \ne y)$ is defined as: 
+Given a SCM and a classifier $\hat{y}=f(\widehat{pa{}})$, the counterfactual spurious error rate ($ER^s$) for a sub-population $s,y$ (with prediction $\hat{y} \ne y)$ is defined as: 
 
 <p align="center">
-	$\mathrm{ER}^s_{s_0,s_1}(\hat{y}\mid y) = P(\hat{y}_{s_0,y}\mid s_1,y) - P(\hat{y}_{s_0,y}\mid s_0,y)$
+	$ER^s_{s_0,s_1}(\hat{y}\mid y) = P(\hat{y}_{s_0,y}\mid s_1,y) - P(\hat{y}_{s_0,y}\mid s_0,y)$
 </p>
 
 The counterfactual spurious error rate can be read as "for two demographics $s_0$, $s_1$ with the same true outcome $Y=y$, how would the prediction $\hat{Y}$ differ had they both been $s_0$, $y$?" For a graphical depiction of these measures, we refer interested reader to the tutorial by Bareinboim, Zhang, and Plecko [[12]](https://www.datascienceassn.org/sites/default/files/Tutorial\%20Causal\%20Fairness\%20Analysis\%20Slides.pdf).
@@ -241,14 +241,14 @@ Building on these measures, Zhang and Bareinboim [[2]](https://proceedings.neuri
 The error rate (ER) balance is given by:
 
 <p align="center">
-	$\mathrm{ER}_{s_0, s_1}(\hat{y}\mid y) = P(\hat{y}\mid s_1,y) - P(\hat{y}\mid s_0,y)$
+	$ER_{s_0, s_1}(\hat{y}\mid y) = P(\hat{y}\mid s_1,y) - P(\hat{y}\mid s_0,y)$
 </p>
 
 #### :information_source: **Theorem: Causal Explanation Formula of Equalized Odds**
 For any $s_0$, $s_1$, $\hat{y}$, $y$, we have the following relationship: 
 
 <p align="center">
-	$\mathrm{ER}_{s_0,s_1}(\hat{y}\mid y) = \mathrm{ER}^d_{s_0,s_1}(\hat{y}\mid s_0,y) - \mathrm{ER}^i_{s_1,s_0}(\hat{y}\mid s_0,y) - \mathrm{ER}^s_{s_1,s_0}(\hat{y}\mid y)$
+	$ER_{s_0,s_1}(\hat{y}\mid y) = ER^d_{s_0,s_1}(\hat{y}\mid s_0,y) - ER^i_{s_1,s_0}(\hat{y}\mid s_0,y) - ER^s_{s_1,s_0}(\hat{y}\mid y)$
 </p>
 
 The above theorem shows that the total disparate error rate can be decomposed into terms, each of which estimates the adverse impact of its corresponding discriminatory mechanism. 
@@ -289,7 +289,7 @@ In [[15]](https://arxiv.org/abs/1911.08292), Huang et al. developed a fairness n
 For individual $i$ with value $(s_{i}, t_{i}, \mathbf{x}_{i}, y_{i})$, the minimum value of the treatment variable to achieve $\gamma$-level outcome is defined as:
 
 <p align="center">
-	$\Psi_i (\gamma) = \argmin_{t\in T} \big\{ \mathbb{E}[Y_i(t)] \geq \gamma)    \}$
+	$\Psi_i (\gamma) = \arg\!\min_{t\in T} \big\{ \mathbb{E}[Y_i(t)] \geq \gamma)    \}$
 </p>
 
 and the minimum effort to achieve $\gamma$-level outcome is $\Psi_i (\gamma)- t_{i}$.
@@ -303,7 +303,7 @@ For a certain outcome level $\gamma$, the equality of effort for individual $i$ 
 	$\Psi_{I^+}(\gamma) = \Psi_{I^-}(\gamma)$
 </p>
 
-where $\Psi_{I^*}(\gamma) = \argmin_{t\in T} \{\mathbb{E}[Y_{I^*}(t)] \geq \gamma \}$ is the minimal effort needed to achieve $\gamma$ level of outcome variable within the subgroup $* \in \{+,-\}$.
+where $\Psi_{I^*}(\gamma) = \arg\!\min_{t\in T} \{\mathbb{E}[Y_{I^*}(t)] \geq \gamma \}$ is the minimal effort needed to achieve $\gamma$ level of outcome variable within the subgroup $* \in \{+,-\}$.
 
 Equal effort fairness can be straightforwardly extended to the system (group) level by replacing $I$ with the whole dataset $D$ (or a particular group). Different from previous fairness notations that mainly focus on the the effect of the marginalization attribute $S$ on the decision attribute $Y$, the equality of effort instead focuses on to what extend the treatment variable $T$ should change to make the individual achieve a certain outcome level. This notation addresses the concerns whether the efforts that would need to make to achieve the same outcome level for individuals from the marginalized group and the efforts from the non-marginalized group are different. For instance, if we have two students with the same credentials minus their gender, and the Female student was required to raise their test score significantly more than the Male, then we do not achieve equal effort fairness.
 
