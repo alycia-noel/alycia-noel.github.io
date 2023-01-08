@@ -117,7 +117,7 @@ Given a SCM, the counterfactual indirect effect (Ctf-IE) of intervention $S=s_1$
 	$Ctf-IE_{s_0,s_1}(y\mid s) = P(y_{s_0, W_{s_1}}\mid s) - P(y_{s_0}\mid s)$
 </p>
 
-Ctf-IE measures changes in the probability of the outcome $Y$ being $y$ had $S$ been $s_0$, while changing $\mathbf{W}$ to whatever level it would have naturally obtained had $S$ been $s_1$, in particular, for the individuals in which $S=s_0$. In terms of Fig. \ref{fig:cgexp}, this means the probability of admission for a Female student based on the intermediate variable values that would be obtained if they were Male (e.g., ratio of Males applying to the major).  
+Ctf-IE measures changes in the probability of the outcome $Y$ being $y$ had $S$ been $s_0$, while changing $\mathbf{W}$ to whatever level it would have naturally obtained had $S$ been $s_1$, in particular, for the individuals in which $S=s_0$. In terms of the example, this means the probability of admission for a Female student based on the intermediate variable values that would be obtained if they were Male (e.g., ratio of Males applying to the major).  
 
 #### :information_source: **Definition: Counterfactual Spurious Effect**
 Given a SCM, the counterfactual spurious effect (Ctf-SE) of $S=s_1$ on $Y=y$ (with baseline $s_0$) is defined as: 
@@ -301,7 +301,7 @@ For a certain outcome level $\gamma$, the equality of effort for individual $i$ 
 	$\Psi_{I^+}(\gamma) = \Psi_{I^-}(\gamma)$
 </p>
 
-where $\Psi_{I^*}(\gamma) = \arg\!\min_{t\in T} \{\mathbb{E}[Y_{I^*}(t)] \geq \gamma \}$ is the minimal effort needed to achieve $\gamma$ level of outcome variable within the subgroup $* \in \{+,-\}$.
+where $\Psi_{I^*}(\gamma) = \arg\min_{t\in T} \{\mathbb{E}[Y_{I^*}(t)] \geq \gamma \}$ is the minimal effort needed to achieve $\gamma$ level of outcome variable within the subgroup $* \in \{+,-\}$.
 
 Equal effort fairness can be straightforwardly extended to the system (group) level by replacing $I$ with the whole dataset $D$ (or a particular group). Different from previous fairness notations that mainly focus on the the effect of the marginalization attribute $S$ on the decision attribute $Y$, the equality of effort instead focuses on to what extend the treatment variable $T$ should change to make the individual achieve a certain outcome level. This notation addresses the concerns whether the efforts that would need to make to achieve the same outcome level for individuals from the marginalized group and the efforts from the non-marginalized group are different. For instance, if we have two students with the same credentials minus their gender, and the Female student was required to raise their test score significantly more than the Male, then we do not achieve equal effort fairness.
 
