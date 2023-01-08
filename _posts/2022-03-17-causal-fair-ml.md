@@ -11,19 +11,19 @@ Most recent fairness notions are causality-based and reflect the now widely acce
 Causality-based fairness notions are developed mainly under two causal frameworks: the structural causal model (SCMs) and the potential outcome. SCMs assume that we know the complete causal graph, and hence, we are able to study the causal effect of any variable along many different paths. The potential outcome framework does not assume the availability of the causal graph and instead focuses on estimating the causal effects of treatment variables. In the table below I present the causal framework to which each causality-based fairness notion discussed in this section belongs. In this section, we we begin by giving a short insight and overview of causality-based fairness notions, followed by a brief intermission to introduce two important statistical-fairness definitions, and then we spend the remainder of the section introducing the casual-based fairness notions, minus the last section where we state the main technical pitfalls experienced by these types of metrics.
 
 <p style="display: block; margin: auto; width: 75%;">
-    <img src="/assets/img/casual-ml/ladderofcausation.jpg"
+    <img src="/assets/img/casual-ml/ladderofcausation.jpg">
 </p>
 
 In [[1]](https://dl.acm.org/doi/10.1145/3241036), Pearl presented the causal hierarchy through the Ladder of Causation, as shown in the figure above. The Ladder of Causation has the 3 rungs: association, intervention, and counterfactual. The first rung, associations, can be inferred directly from the observed data using conditional probabilities and conditional expectations. The intervention rung involves not only seeing what is, but also changing what we see. Interventional questions deal with $P(y\mid do(x), z)$ which stands for "the probability of $Y=y$, given that we intervene and set the values of $X$ to $x$ and subsequently observe event $Z=z$ ." Interventional questions cannot be answered from pure observational data alone. They can be estimated experimentally from randomized trials or analytically using causal Bayesian networks. The top rung invokes counterfactuals and deals with $P(y_x\mid x', y')$ which stands for "the probability that event $Y=y$ would be observed had $X$ been $x$, given that we actually observed $X$ to be $x'$ and $Y$ to be $y'$ ." Such questions can be computed only when the model is based on functional relations or is structural. In in the table below also show the causal hierarchical level that each causality-based fairness notion aligns with. 
 
 <p style="display: block; margin: auto; width: 75%;">
-    <img src="/assets/img/casual-ml/table1.png"
+    <img src="/assets/img/casual-ml/table1.png">
 </p>
 	
 In the context of fair machine learning, we use $S \in \{s^+, s^-\}$ to denote the marginalization attribute, $Y \in \{y^+, y^-\}$ to denote the decision, and $\mathbf{X}$ to denote a set of non-marginalization attributes. The underlying mechanism of the population over the space $S\times \mathbf{X} \times Y$ is represented by a causal model $\mathcal{M}$, which is associated with a causal graph $\mathcal{G}$. The figure below shows a causal graph that will be used to illustrate fairness notions throughout this section. With $\mathcal{M}$, we want to reason about counterfactual queries, e.g., "what would the prediction have been for this individual if their marginalization attribute value changed?'' A historical dataset $\mathcal{D}$ is drawn from the population, which is used to construct a predictor $ h: \mathbf{X}, S \rightarrow \hat{Y} $. Note that the input of the predictor can be a subset of $\mathbf{X}, S$ and we use $\widehat{Pa{}}$ to denote the set of input features of the predictor when introducing counterfactual error rate in Section \ref{sec:cer}. The causal model for the population over space $S\times \mathbf{X} \times \hat{Y}$ can be considered the same as $\mathcal{M}$, except that the function $f_{Y}$ is replaced with a predictor $h$. Most fairness notions involve either $Y$ or $\hat{Y}$ in their counterfactual quantity and, roughly speaking, they correspond to statistical parity (a statistical-based notion introduced below). A few fairness notions, e.g., counterfactual direct error rate [[2]](https://proceedings.neurips.cc/paper/2018/hash/ff1418e8cc993fe8abcfe3ce2003e5c5-Abstract.html), correspond to the concept of equalized odds (also explained below) and involve both $Y$ and $\hat{Y}$ in their counterfactual quantity. We also mark if a notion uses $Y$ and/or $\hat{Y}$ in the table abovoe.
 
 <p style="display: block; margin: auto; width: 75%;">
-    <img src="/assets/img/casual-ml/berkelyexample.jpg"
+    <img src="/assets/img/casual-ml/berkelyexample.jpg">
 </p>
 
 We note that for all of the fairness notions presented here, there actually exists two versions -- strict and relaxed. The strict version means there is absolutely no discrimination effect (i.e., no wiggle room), whereas the relaxed version often compares the causal effect with $\tau$, a user-defined threshold for discrimination (i.e., wiggle room). Despite having two approaches, for simplicity, we adhere to the strict version when introducing each fairness notion in the discussion below. 
@@ -174,14 +174,14 @@ In order to achieve path-specific counterfactual fairness in the running example
 We point out that we can simply define the PC Fairness on a classifier by replacing outcome $Y$ with the predictor $\hat{Y}$ in the above equation. Previous causality-based fairness notions can be expressed as special cases of the PC fairness based on the value of $\mathbf{O}$ (e.g., $\emptyset$ or $S,{\mathbf{X}}$ ) and the value of $\pi$ (e.g., $\Pi$ or $\pi_d$). Their connections are summarised in Table 2 below, where $\pi_d$ contains the direct edge from $S$ to $\hat{Y}$, and $\pi_i$ is a path set that contains all causal paths passing through any redlining attributes. The notion of PC fairness also resolves new types of fairness, e.g., individual indirect fairness, which means discrimination along the indirect paths for a particular individual. Formally, individual indirect fairness can be directly defined and analyzed using PC fairness by letting $\mathbf{O}=\{S,\mathbf{X}\}$ and $\pi=\pi_{i}$.
 
 <p style="display: block; margin: auto; width: 75%;">
-    <img src="/assets/img/casual-ml/table2.png"
+    <img src="/assets/img/casual-ml/table2.png">
 </p>
 	
 ## Proxy Fairness
 In [[10]](https://arxiv.org/abs/1706.02744), Kilbertus et al. proposed proxy fairness. A proxy is a descendant of $S$ in the causal graph whose observable quantity is significantly correlated with $S$, but should not affect the prediction. An example of a proxy variable in our running admission case can be seen in the figure below. 
 
 <p style="display: block; margin: auto; width: 75%;">
-    <img src="/assets/img/casual-ml/proxy.jpg"
+    <img src="/assets/img/casual-ml/proxy.jpg">
 </p>
 
 #### :information_source: **Definition: Proxy Discrimination**
