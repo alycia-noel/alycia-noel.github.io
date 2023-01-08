@@ -301,7 +301,7 @@ For a certain outcome level $\gamma$, the equality of effort for individual $i$ 
 	$\Psi_{I^+}(\gamma) = \Psi_{I^-}(\gamma)$
 </p>
 
-where $\Psi_{I^*}(\gamma) = \arg\min_{t\in T} \{\mathbb{E}[Y_{I^*}(t)] \geq \gamma \}$ is the minimal effort needed to achieve $\gamma$ level of outcome variable within the subgroup $* \in \{+,-\}$.
+where $\Psi_{I^+}(\gamma) = \arg\min_{t\in T} \{\mathbb{E}[Y_{I^+}(t)] \geq \gamma \}$ is the minimal effort needed to achieve $\gamma$ level of outcome variable within the subgroup $+$ (or equivalently $-$.
 
 Equal effort fairness can be straightforwardly extended to the system (group) level by replacing $I$ with the whole dataset $D$ (or a particular group). Different from previous fairness notations that mainly focus on the the effect of the marginalization attribute $S$ on the decision attribute $Y$, the equality of effort instead focuses on to what extend the treatment variable $T$ should change to make the individual achieve a certain outcome level. This notation addresses the concerns whether the efforts that would need to make to achieve the same outcome level for individuals from the marginalized group and the efforts from the non-marginalized group are different. For instance, if we have two students with the same credentials minus their gender, and the Female student was required to raise their test score significantly more than the Male, then we do not achieve equal effort fairness.
 
