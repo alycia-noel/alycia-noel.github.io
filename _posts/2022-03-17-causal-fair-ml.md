@@ -97,8 +97,6 @@ Given a factual condition $\mathbf{O}= \mathbf{o}$ where $\mathbf{O} \subseteq \
 
 where $s_1, s_0 \in \{ s^+, s^-\}$ .
 
-Note that we can simply define a classifier as counterfactually fair by replacing outcome $Y$ with the predictor $\hat{Y}$ in the above equation. The meaning of counterfactual fairness can be interpreted as follows when applied to the example. Applicants are applying for admission and a predictive model is used to make the decision $\hat{Y}$ . We concern ourselves with an individual from marginalized group $s_0$ who is specified by a profile $\mathbf{o}$. The probability of the individual to get a positive decision is $P(\hat{y}\mid s_0,\mathbf{o})$, which is equivalent to $P(\hat{y}$ $_{s_0}\mid s_0,\mathbf{o})$ since the intervention makes no change to $S$'s value of that individual. Now assume the value of $S$ for the individual had been changed from $s_0$ to $s_1$. The probability of the individual to get a positive decision after the hypothetical change is given by $P(\hat{y}$$_{s_1}\mid s_0, \mathbf{o})$. Therefore, if the two probabilities $P(\hat{y}$$_{s_0}\mid s_0, \mathbf{o})$ and $P(\hat{y}$$_{s_1}\mid s_0, \mathbf{o})$ are identical, we can claim the individual is treated fairly as if they had been from the other group.
-
 ## Counterfactual Effects
 
 In [[8]](https://www.cs.purdue.edu/homes/eb/r30.pdf), Zhang and Bareinboim introduced three fine-grained measures of the transmission of change from stimulus to effect called the counterfactual direct, indirect, and spurious effects. Throughout this section, we use $\mathbf{W}$ to denote all the observed intermediate variables between $S$ and $Y$ and use the group with $S=s_0$ as the baseline to measure changes of the outcome. 
