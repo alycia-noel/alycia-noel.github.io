@@ -97,7 +97,7 @@ Given a factual condition $\mathbf{O}= \mathbf{o}$ where $\mathbf{O} \subseteq \
 
 where $s_1, s_0 \in \{ s^+, s^-\}$ .
 
-Note that we can simply define a classifier as counterfactually fair by replacing outcome $Y$ with the predictor $\hat{Y}$ in the above equation. The meaning of counterfactual fairness can be interpreted as follows when applied to the example. Applicants are applying for admission and a predictive model is used to make the decision $\hat{Y}$ . We concern ourselves with an individual from marginalized group $s_0$ who is specified by a profile $\mathbf{o}$. The probability of the individual to get a positive decision is $P(\hat{y}\mid s_0,\mathbf{o})$, which is equivalent to $P(\hat{y}_{s_0}\mid s_0,\mathbf{o})$ since the intervention makes no change to $S$'s value of that individual. Now assume the value of $S$ for the individual had been changed from $s_0$ to $s_1$. The probability of the individual to get a positive decision after the hypothetical change is given by $P(\hat{y}_{s_1}\mid s_0, \mathbf{o})$. Therefore, if the two probabilities $P(\hat{y}_{s_0}\mid s_0, \mathbf{o})$ and $P(\hat{y}_{s_1}\mid s_0, \mathbf{o})$ are identical, we can claim the individual is treated fairly as if they had been from the other group.
+Note that we can simply define a classifier as counterfactually fair by replacing outcome $Y$ with the predictor $\hat{Y}$ in the above equation. The meaning of counterfactual fairness can be interpreted as follows when applied to the example. Applicants are applying for admission and a predictive model is used to make the decision $\hat{Y}$ . We concern ourselves with an individual from marginalized group $s_0$ who is specified by a profile $\mathbf{o}$. The probability of the individual to get a positive decision is $P(\hat{y}\mid s_0,\mathbf{o})$, which is equivalent to $P(\hat{y}$$_{s_0}\mid s_0,\mathbf{o})$ since the intervention makes no change to $S$'s value of that individual. Now assume the value of $S$ for the individual had been changed from $s_0$ to $s_1$. The probability of the individual to get a positive decision after the hypothetical change is given by $P(\hat{y}$$_{s_1}\mid s_0, \mathbf{o})$. Therefore, if the two probabilities $P(\hat{y}$$_{s_0}\mid s_0, \mathbf{o})$ and $P(\hat{y}$$_{s_1}\mid s_0, \mathbf{o})$ are identical, we can claim the individual is treated fairly as if they had been from the other group.
 
 ## Counterfactual Effects
 
@@ -107,16 +107,16 @@ In [[8]](https://www.cs.purdue.edu/homes/eb/r30.pdf), Zhang and Bareinboim intro
 Given a SCM, the counterfactual direct effect (Ctf-DE) of intervention $S=s_1$ on $Y$ (with baseline $s_0$) conditioned on $S=s$ is defined as:
 
 <p align="center">
-	$\textrm{Ctf-DE}_{s_0,s_1}(y\mid s) = P(y_{s_1,\mathbf{W_{s_0}}}\mid s) - P(y_{s_0}\mid s)$
+	$Ctf-DE_{s_0,s_1}(y\mid s) = P(y_{s_1,\mathbf{W_{s_0}}}\mid s) - P(y_{s_0}\mid s)$
 </p>
 
-$Y_{s_1,\mathbf{W}_{s_0}} = y\mid S = s$ is a more involved counterfactual compared to NDE and can be read as "the value $Y$ would be had $S$ been $s_1$, while $\mathbf{W}$ is kept at the same value that it would have attained had $S$ been $s_0$, given that $S$ was actually equal to $s$." In terms of the above figure, $Y_{s_1,\mathbf{W}_{s_0}} = y\mid S = s$  means the admission decision for a Female student if they had actually been Male, while keeping all intermediate variables the same, when given that the student's gender is actually $s$ (meaning Male or Female). 
+$Y_{s_1,\mathbf{W}$$_{s_0}} = y\mid S = s$ is a more involved counterfactual compared to NDE and can be read as "the value $Y$ would be had $S$ been $s_1$, while $\mathbf{W}$ is kept at the same value that it would have attained had $S$ been $s_0$, given that $S$ was actually equal to $s$." In terms of the above figure, $Y_{s_1,\mathbf{W}$$_{s_0}} = y\mid S = s$  means the admission decision for a Female student if they had actually been Male, while keeping all intermediate variables the same, when given that the student's gender is actually $s$ (meaning Male or Female). 
 
 #### :information_source: **Definition: Counterfactual Indirect Effect**
 Given a SCM, the counterfactual indirect effect (Ctf-IE) of intervention $S=s_1$ on $Y$ (with baseline $s_0$) conditioned on $S=s$ is defined as: 
 
 <p align="center">
-	$\textrm{Ctf-IE}_{s_0,s_1}(y\mid s) = P(y_{s_0,\mathbf{W}_{s_1}}\mid s) - P(y_{s_0}\mid s)$
+	$Ctf-IE_{s_0,s_1}(y\mid s) = P(y_{s_0, W_{s_1}}\mid s) - P(y_{s_0}\mid s)$
 </p>
 
 Ctf-IE measures changes in the probability of the outcome $Y$ being $y$ had $S$ been $s_0$, while changing $\mathbf{W}$ to whatever level it would have naturally obtained had $S$ been $s_1$, in particular, for the individuals in which $S=s_0$. In terms of Fig. \ref{fig:cgexp}, this means the probability of admission for a Female student based on the intermediate variable values that would be obtained if they were Male (e.g., ratio of Males applying to the major).  
@@ -125,13 +125,13 @@ Ctf-IE measures changes in the probability of the outcome $Y$ being $y$ had $S$ 
 Given a SCM, the counterfactual spurious effect (Ctf-SE) of $S=s_1$ on $Y=y$ (with baseline $s_0$) is defined as: 
 
 <p align="center">
-	$\textrm{Ctf-SE}_{s_0,s_1}(y) = P(y_{s_0}\mid s_1) - P(y\mid {s_0})$
+	$Ctf-SE_{s_0,s_1}(y) = P(y_{s_0}\mid s_1) - P(y\mid {s_0})$
 </p>
 
-$\text{Ctf-SE}_{s_0,s_1}(y)$ measures the difference in the outcome $Y=y$ had $S$ been $s_0$ for the individuals that would naturally choose $S$ to be $s_0$ versus $s_1$. In other words, it measures the difference in the admission decision had the marginalization attribute been set to Female for the students that were actually Female versus Male.
+$Ctf-SE_{s_0,s_1}(y)$ measures the difference in the outcome $Y=y$ had $S$ been $s_0$ for the individuals that would naturally choose $S$ to be $s_0$ versus $s_1$. In other words, it measures the difference in the admission decision had the marginalization attribute been set to Female for the students that were actually Female versus Male.
 
 #### :information_source: **Proposition**
-For a SCM, if $S$ has no direct (indirect) causal path connecting $Y$ in the causal graph, then $\textrm{Ctf-DE}_{s_0,s_1}(y\mid s)=0$ ($\textrm{Ctf-IE}_{s_0,s_1}(y\mid s)=0$) for any $s$, $y$; if $S$ has no back-door\footnote{A backdoor path from $X$ to $Y$ is any path starting at $X$ with a backward edge $\leftarrow$ into $X$ such as: $X \leftarrow A \rightarrow B \leftarrow C \rightarrow Y$. Backdoor paths allow information to flow from $X$ to $Y$ in a way that is not causal.} path connecting $Y$ in the causal graph, then $\textrm{Ctf-SE}_{s_0,s_1}(y) = 0$ for any $y$. 
+For a SCM, if $S$ has no direct (indirect) causal path connecting $Y$ in the causal graph, then $Ctf-DE_{s_0,s_1}(y\mid s)=0$ ($Ctf-IE_{s_0,s_1}(y\mid s)=0$) for any $s$, $y$; if $S$ has no back-door\footnote{A backdoor path from $X$ to $Y$ is any path starting at $X$ with a backward edge $\leftarrow$ into $X$ such as: $X \leftarrow A \rightarrow B \leftarrow C \rightarrow Y$. Backdoor paths allow information to flow from $X$ to $Y$ in a way that is not causal.} path connecting $Y$ in the causal graph, then $Ctf-SE_{s_0,s_1}(y) = 0$ for any $y$. 
 
 Building on these measures, Zhang and Bareinboim derived the causal explanation formula for the disparities observed in the total variation. Recall that the total variation is simply the difference between the conditional distributions of $Y$ when observing $S$ changing from $s_0$ to $s_1$. 
 
@@ -148,11 +148,11 @@ In regard to the figure above, the TV would be the probability of the outcome gi
 For any $s_0$, $s_1$, $y$, the total variation, counterfactual spurious, direct, and indirect effects obey the following relationship: 
  
 <p align="center">
- 	$TV_{s_0,s_1}(y) = \textrm{Ctf-SE}_{s_0,s_1}(y) + \textrm{Ctf-IE}_{s_0,s_1}(y\mid s_1) - \textrm{Ctf-DE}_{s_1,s_0}(y\mid s_1)$
+ 	$TV_{s_0,s_1}(y) = Ctf-SE_{s_0,s_1}(y) + Ctf-IE_{s_0,s_1}(y\mid s_1) - Ctf-DE_{s_1,s_0}(y\mid s_1)$
 </p>
 
 <p align="center">
-	$TV_{s_0,s_1}(y) = \textrm{Ctf-DE}_{s_0,s_1}(y\mid s_0) - \textrm{Ctf-SE}_{s_1,s_0}(y) - \textrm{Ctf-IE}_{s_1,s_0}(y\mid s_0)$
+	$TV_{s_0,s_1}(y) = Ctf-DE_{s_0,s_1}(y\mid s_0) - Ctf-SE_{s_1,s_0}(y) - Ctf-IE_{s_1,s_0}(y\mid s_0)$
 </p>
 
 The theorem allows the machine learning designer to quantitatively evaluate fairness and explain the total observed disparity of a decision through different discriminatory mechanisms. For example, the first formula shows that the total disparity experienced by the individuals who have naturally attained $s_1$ (relative to $s_0$, in other words, students who were naturally Male over Female) is equal to the disparity associated with spurious discrimination, plus the advantage it lost due to indirect discrimination, minus the advantage it would have gained without direct discrimination. 
@@ -214,7 +214,7 @@ Zhang and Bareinboim [[2]](https://proceedings.neurips.cc/paper/2018/hash/ff1418
 Given a SCM and a classifier $\hat{y}=f(\widehat{pa{}})$ where $\widehat{Pa{}}$ is a set of input features of the predictor, the counterfactual direct error rate ($ER^d$) for a sub-population $s,y$ (with prediction $\hat{y} \ne y)$ is defined as: 
 
 <p align="center">
-	$ER^d_{s_0,s_1}(\hat{y}\mid s,y) = P(\hat{y}_{s_1,y,(\widehat{Pa{}}\backslash S)_{s_0,y}}\mid s,y) - P(\hat{y}_{s_0,y}\mid s,y)$
+	$ER^d_{s_0,s_1}(\hat{y}\mid s,y) = P(\hat{y}$$_{s_1,y,(\widehat{Pa{}}\backslash S)_{s_0,y}}\mid s,y) - P(\hat{y}$$_{s_0,y}\mid s,y)$
 </p>
 
 For an individual with the marginalization attribute $S=s$ and the true outcome $Y=y$, the counterfactual direct error rate calculates the difference of two terms. The first term is the prediction $\hat{Y}$ had $S$ been $s_1$, while keeping all the other features $\widehat{Pa{}}\backslash S$ at the level that they would attain had $S=s_0$ and $Y=y$, whereas the second term is the prediction $\hat{Y}$ the individual would receive had $S$ been $s_0$ and $Y$ been $y$. 
@@ -223,14 +223,14 @@ For an individual with the marginalization attribute $S=s$ and the true outcome 
 Given a SCM and a classifier $\hat{y}=f(\widehat{pa{}})$, the counterfactual indirect error rate ($ER^i$) for a sub-population $s,y$ (with prediction $\hat{y} \ne y)$ is defined as: 
 
 <p align="center">
-	$ER^i_{s_0,s_1}(\hat{y}\mid s,y) = P(\hat{y}_{s_0,y,(\hat{PA}\backslash S)_{s_1,y}}\mid s,y) - P(\hat{y}_{s_0,y}\mid s,y)$
+	$ER^i_{s_0,s_1}(\hat{y}\mid s,y) = P(\hat{y}$$_{s_0,y,(\hat{PA}\backslash S)_{s_1,y}}\mid s,y) - P(\hat{y}$$_{s_0,y}\mid s,y)$
 </p>
 
 #### :information_source: **Definition: Counterfactual Spurious Error Rate**
 Given a SCM and a classifier $\hat{y}=f(\widehat{pa{}})$, the counterfactual spurious error rate ($ER^s$) for a sub-population $s,y$ (with prediction $\hat{y} \ne y)$ is defined as: 
 
 <p align="center">
-	$ER^s_{s_0,s_1}(\hat{y}\mid y) = P(\hat{y}_{s_0,y}\mid s_1,y) - P(\hat{y}_{s_0,y}\mid s_0,y)$
+	$ER^s_{s_0,s_1}(\hat{y}\mid y) = P(\hat{y}$$_{s_0,y}\mid s_1,y) - P(\hat{y}$$_{s_0,y}\mid s_0,y)$
 </p>
 
 The counterfactual spurious error rate can be read as "for two demographics $s_0$, $s_1$ with the same true outcome $Y=y$, how would the prediction $\hat{Y}$ differ had they both been $s_0$, $y$?" For a graphical depiction of these measures, we refer interested reader to the tutorial by Bareinboim, Zhang, and Plecko [[12]](https://www.datascienceassn.org/sites/default/files/Tutorial\%20Causal\%20Fairness\%20Analysis\%20Slides.pdf).
@@ -260,12 +260,12 @@ In [[13]](https://proceedings.mlr.press/v106/pfohl19a.html), Pfohl et al. propos
 Given a factual condition $\mathbf{O} = \mathbf{o}$ where $\mathbf{O} \subseteq \{\mathbf{X}, Y \}$, predictor $\hat{Y}$ achieves the individual equalized counterfactual odds if: 
 
 <p align="center">
-	$P(\hat{y}_{s_1} \mid  \mathbf{o},y_{s_1}, s_0) - P(\hat{y}_{s_0} \mid  \mathbf{o}, y_{s_0}, s_0) =0$
+	$P(\hat{y}$$_{s_1} \mid  \mathbf{o},y_{s_1}, s_0) - P(\hat{y}$$_{s_0} \mid  \mathbf{o}, y_{s_0}, s_0) =0$
 </p>
 
 where $s_1, s_0 \in \{ s^+, s^-\}$.
 
-The notion implies that the predictor must be counterfactually fair given the outcome $Y$ matching the counterfactual outcome $y_{s_0}$. This is different than the normal counterfactual fairness calculation, which requires the prediction to be equal across the factual/counterfactual pairs, without caring if those pairs have the same outcome prediction. Therefore, in addition to requiring predictions to be equal across factual/counterfactual samples, those samples must also share the same value of the actual outcome $Y$. In other words, it considers the desiderata from both counterfactual fairness and equalized odds. For our running example, this is an extension of the discussion under the definition for counterfactual fairness, in which we now require that $\hat{y}_{s_0} = \hat{y}_{s_1}$.
+The notion implies that the predictor must be counterfactually fair given the outcome $Y$ matching the counterfactual outcome $y_{s_0}$. This is different than the normal counterfactual fairness calculation, which requires the prediction to be equal across the factual/counterfactual pairs, without caring if those pairs have the same outcome prediction. Therefore, in addition to requiring predictions to be equal across factual/counterfactual samples, those samples must also share the same value of the actual outcome $Y$. In other words, it considers the desiderata from both counterfactual fairness and equalized odds. For our running example, this is an extension of the discussion under the definition for counterfactual fairness, in which we now require that $\hat{y}$$_{s_0} = \hat{y}$$_{s_1}$.
 
 ## Fair on Average Causal Effect
 
@@ -283,10 +283,10 @@ FACT focuses on the same effect at the group level. This is equivalent to the ex
 
 ## Equality of Effort
 
-In [[15]](https://arxiv.org/abs/1911.08292), Huang et al. developed a fairness notation called equality of effort. When applied to the example, we have a dataset with $N$ individuals with attributes $(S, T, \mathbf{X}, Y)$ where $S$ denotes the marginalization attribute gender with domain values $\{ s^+, s^-\}$, $Y$ denotes a decision attribute admission with domain values $\{ y^+, y^-\}$, $T$ denotes a legitimate attribute such as test score, and $\mathbf{X}$ denotes a set of covariates. For an individual $i$ in the dataset with profile $(s_{i}, t_{i}, \mathbf{x}_{i}, y_{i})$, they may ask the counterfactual question, how much they should improve their test score such that the probability of their admission is above a threshold $\gamma$ (e.g., $80\%$). 
+In [[15]](https://arxiv.org/abs/1911.08292), Huang et al. developed a fairness notation called equality of effort. When applied to the example, we have a dataset with $N$ individuals with attributes $(S, T, \mathbf{X}, Y)$ where $S$ denotes the marginalization attribute gender with domain values $\{ s^+, s^-\}$, $Y$ denotes a decision attribute admission with domain values $\{ y^+, y^-\}$, $T$ denotes a legitimate attribute such as test score, and $\mathbf{X}$ denotes a set of covariates. For an individual $i$ in the dataset with profile $(s_{i}, t_{i}, x_{i}, y_{i})$, they may ask the counterfactual question, how much they should improve their test score such that the probability of their admission is above a threshold $\gamma$ (e.g., $80\%$). 
 
 #### :information_source: **Definition:** $\gamma$-Minimum Effort
-For individual $i$ with value $(s_{i}, t_{i}, \mathbf{x}_{i}, y_{i})$, the minimum value of the treatment variable to achieve $\gamma$-level outcome is defined as:
+For individual $i$ with value $(s_{i}, t_{i}, x_{i}, y_{i})$, the minimum value of the treatment variable to achieve $\gamma$-level outcome is defined as:
 
 <p align="center">
 	$\Psi_i (\gamma) = \arg\!\min_{t\in T} \big\{ \mathbb{E}[Y_i(t)] \geq \gamma)    \}$
