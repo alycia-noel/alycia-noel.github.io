@@ -21,6 +21,7 @@ permalink: /resources/
 
 ## Online Courses
 
+* [DeepMind x UCL Deep Learning Course](https://www.youtube.com/watch?v=7R52wiUgxZI&list=PLqYmG7hTraZCDxZ44o4p3N5Anz3lLRVZF&ab_channel=DeepMind)
 * [Convolutional Neural Networks for Visual Recognition - Stanford](https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv)
 * [MIT Introduction to Deep Learning : 6.S191](https://www.youtube.com/watch?ab_channel=AlexanderAmini&index=1&list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI&v=njKP3FqW3Sk)
 * [Secure and Private AI - Udacity](https://www.udacity.com/course/secure-and-private-ai--ud185)
