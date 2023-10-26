@@ -8,8 +8,8 @@ permalink: /publications/
   * A. N. Carey, M. H. Van, and X. Wu. ArXiv (Under review - SIAM 2024)
 * [HINT: Healthy Influential-Noise based Training to Defend against Data Poisoning Attacks](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ueAz0nUAAAAJ&sortby=pubdate&citation_for_view=ueAz0nUAAAAJ:kNdYIx-mwKoC)
   * M. H. Van, A. N. Carey, and X. Wu. ICDM 2023
-## 2022
 
+## 2022
 * [Robust Personalized Federated Learning under Demographic Fairness Heterogeneity](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ueAz0nUAAAAJ&citation_for_view=ueAz0nUAAAAJ:3fE2CSJIrl8C) 
   * A. N. Carey, W. Du, and X. Wu.IEEE International Conference on Big Data
 * [The Statistical Fairness Field Guide: Perspectives from Social and Formal Sciences](https://link.springer.com/article/10.1007/s43681-022-00183-3)
